@@ -1,0 +1,95 @@
+.bildcontainer {
+    display: grid;
+    justify-items: center;
+    background-color: whitesmoke;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  #bild {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+  }
+  
+  
+  #bild img {
+    object-fit: cover;
+    z-index: 5;
+  }
+  
+  figcaption {
+    display: flex;
+    color: black;
+    bottom: 5px;
+    padding: 5px;
+  }
+  
+  #tshirttext {
+    justify-content: space-between;
+    gap: 50px;
+    font-weight: bold;
+  }
+  
+  #levi {
+    font-size: 0.9em;
+    padding: 5px;
+    padding-top: 2px;
+  }
+  
+  #bild i.bi-heart {
+    position: absolute;
+    bottom: 100px;
+    right: 10px;
+    color: grey;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  #bild i.bi-heart:hover {
+    color: orange;
+    font-size: 3rem;
+    transition: ease-in-out;
+  }
+  
+  .badge {
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: black;
+    font-size: 1rem;
+    color: white;
+    align-content: center;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    z-index: 10;
+  }
+  
+  .iconlinks {
+    padding: 10px;
+  }
+
+  @media (min-width: 640px) {
+    .bildcontainer {
+        grid-template-columns: 1fr 1fr;
+      }
+    
+      .bildcontainer > section {
+        grid-template-rows: auto;
+      }
+    
+      .iconlinks ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+        .bildcontainer {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            margin-left: 10px;
+          }
+    }      

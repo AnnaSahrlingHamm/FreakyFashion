@@ -1,0 +1,28 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: whitesmoke;
+    border: 7px dotted orange;
+    color: hotpink;
+    font-style: bold;
+    font-family: cursive;
+  }
+
+  @media (min-width: 1024px) {
+    
+    .hero {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 70%;
+        gap: 50px;
+        justify-content: center;
+        font-size: 2.8rem;
+        color: lightgray;
+        padding: 20px;
+      }
+    
+  }
