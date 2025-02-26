@@ -11,14 +11,14 @@ app.use(cors());
 app.use(express.json());
 
 // 🟢 Hämta alla tasks
-app.get("/api/tasks", (req, res) => {
+app.get("/api/products", (req, res) => {
     const tasks = db.prepare("SELECT * FROM tasks").all();
     res.json(tasks);
 });
 
 // 🟢 Hämta en enskild task
-app.get("/api/tasks/:id", (req, res) => {
-    const task = db.prepare("SELECT * FROM tasks WHERE id = ?").get(req.params.id);
+app.get("/api/products/:slug", (req, res) => {
+    const task = db.prepare("SELECT * FROM tasks WHERE slug = ?").get(req.params.id);
     if (!task) {
         return res.status(404).json({ error: "Task not found" });
     }
@@ -26,20 +26,20 @@ app.get("/api/tasks/:id", (req, res) => {
 });
 
 // 🟢 Lägg till en ny task
-app.post("/api/tasks", (req, res) => {
-    const { name, done } = req.body;
-    const stmt = db.prepare("INSERT INTO tasks (name, done) VALUES (?, ?)");
-    const result = stmt.run(name, done || 0);
-    res.json({ id: result.lastInsertRowid, name, done: done || 0 });
+app.post("/api/products", (req, res) => {
+    const { image, item, brand, description, price, slug, sku } = req.body;
+    const stmt = db.prepare("INSERT INTO products (image, item, brand, description, price, slug, sku) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    const result = stmt.run(image, item, brand, description, price, slug, sku);
+    res.json({ id: result.lastInsertRowid, image, item, brand, description, price, slug, sku});
 });
 
 // 🟢 Uppdatera en task
-app.put("/api/tasks/:id", (req, res) => {
+app.put("/api/products/:id", (req, res) => {
     const { name, done } = req.body;
-    const stmt = db.prepare("UPDATE tasks SET name = ?, done = ? WHERE id = ?");
-    const result = stmt.run(name, done, req.params.id);
+    const stmt = db.prepare("UPDATE tasks SET image = ?, item = ?, brand = ?, description = ?, price = ?, slug = ?, sku = ? WHERE id = ?");
+    const result = stmt.run(image, item, brand, description, price, slug, sku, req.params.id);
     if (result.changes === 0) {
-        return res.status(404).json({ error: "Task not found" });
+        return res.status(404).json({ error: "Product not found" });
     }
     res.json({ id: req.params.id, name, done });
 });

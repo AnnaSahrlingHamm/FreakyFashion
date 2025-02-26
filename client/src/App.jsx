@@ -1,92 +1,47 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import Products from './pages/Products/Products';
+import { Routes, Route, Link, HashRouter } from 'react-router-dom';
+import Index from './pages/Index/Index';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
-import AddProduct from './pages/AddProduct/AddProduct';
-import Cart from './pages/Cart/Cart';
-import Checkout from './pages/Checkout/Checkout';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <header>
         <Link to="/">
-          <h1>Min E-handel</h1>
+          <h1>Välkommen till Freaky Fashion!</h1>
         </Link>
         <nav>
           <Link to="/products">Produkter</Link>
-          <Link to="/cart">Varukorg</Link>
+          <Link to="/basket" id="cart">Varukorg</Link>
         </nav>
       </header>
       <main>
         <Routes>
           {/* Start-sidan */}
-          <Route index element={<Index />} />
+          <Route path="/" element={<Index />} />
 
           {/* Alla produkter */}
-          <Route path="/products" element={<Products />} />
+          {/* <Route path="/products" element={<Products />} /> */}
 
           {/* Enskild produkt */}
           <Route path="/products/:id" element={<ProductDetails />} />
 
           {/* Lägg till produkt (admin eller användare med rättigheter) */}
-          <Route path="/add-product" element={<AddProduct />} />
+         {/* <Route path="/add-product" element={<AddProduct />} /> */}
 
           {/* Varukorg */}
-          <Route path="/cart" element={<Cart />} />
+          {/* <Route path="/cart" element={<Cart />} /> */}
 
           {/* Kassa */}
-          <Route path="/checkout" element={<Checkout />} />
+          {/* <Route path="/checkout" element={<Checkout />} /> */}
 
           {/* Fallback om ingen route matchar */}
           <Route path="*" element={<h2>Sidan hittades inte</h2>} />
         </Routes>
       </main>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
 export default App;
-
-
-  /* return (
-    <>
-      <div>
-          <ProductCard/>
-      </div>
-    </>
-  ) */
-
-/*   return (
-    <>
-      <div>
-          <Spots/>
-      </div>
-    </>
-  ) */
-
-/*   return (
-    <>
-      <div>
-          <Footer/>
-      </div>
-    </>
-  ) */
-
- /*  return (
-    <>
-      <div>
-          <Header/>
-      </div>
-    </>
-  ) */
-
-  /* return (
-    <>
-      <div>
-          <Hero/>
-      </div>
-    </>
-  ) */
