@@ -10,22 +10,22 @@ const db = new Database('./db/freakyfashion.db');
 app.use(cors());
 app.use(express.json());
 
-// 🟢 Hämta alla tasks
+// 🟢 Hämta alla produkter
 app.get("/api/products", (req, res) => {
-    const tasks = db.prepare("SELECT * FROM tasks").all();
-    res.json(tasks);
+    const products = db.prepare("SELECT * FROM products").all();
+    res.json(products);
 });
 
-// 🟢 Hämta en enskild task
+// 🟢 Hämta en enskild produkt
 app.get("/api/products/:slug", (req, res) => {
-    const task = db.prepare("SELECT * FROM tasks WHERE slug = ?").get(req.params.id);
-    if (!task) {
-        return res.status(404).json({ error: "Task not found" });
+    const product = db.prepare("SELECT * FROM products WHERE slug = ?").get(req.params.id);
+    if (!product) {
+        return res.status(404).json({ error: "Product not found" });
     }
-    res.json(task);
+    res.json(product);
 });
 
-// 🟢 Lägg till en ny task
+// 🟢 Lägg till en ny produkt
 app.post("/api/products", (req, res) => {
     const { image, item, brand, description, price, slug, sku } = req.body;
     const stmt = db.prepare("INSERT INTO products (image, item, brand, description, price, slug, sku) VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -33,7 +33,7 @@ app.post("/api/products", (req, res) => {
     res.json({ id: result.lastInsertRowid, image, item, brand, description, price, slug, sku});
 });
 
-// 🟢 Uppdatera en task
+// 🟢 Uppdatera en produkt
 app.put("/api/products/:id", (req, res) => {
     const { name, done } = req.body;
     const stmt = db.prepare("UPDATE tasks SET image = ?, item = ?, brand = ?, description = ?, price = ?, slug = ?, sku = ? WHERE id = ?");
@@ -44,14 +44,14 @@ app.put("/api/products/:id", (req, res) => {
     res.json({ id: req.params.id, name, done });
 });
 
-// 🟢 Ta bort en task
-app.delete("/api/tasks/:id", (req, res) => {
-    const stmt = db.prepare("DELETE FROM tasks WHERE id = ?");
+// 🟢 Ta bort en produkt
+app.delete("/api/products/:id", (req, res) => {
+    const stmt = db.prepare("DELETE FROM products WHERE id = ?");
     const result = stmt.run(req.params.id);
     if (result.changes === 0) {
-        return res.status(404).json({ error: "Task not found" });
+        return res.status(404).json({ error: "Product not found" });
     }
-    res.json({ message: "Task deleted" });
+    res.json({ message: "Product deleted" });
 });
 
 // Starta servern
