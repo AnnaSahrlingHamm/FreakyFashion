@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./NavBar.module.css"; // Importera en CSS-modul för styling
+import styles from "./NavBar.module.css"; // Importera CSS-modulen
 
 const NavBar = () => {
   return (

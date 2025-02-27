@@ -9,7 +9,6 @@ import Footer from "../../components/Footer/Footer";
 const Index = () => {
   return (
     <>
-      <h2>Test</h2>
       <Header />
       <NavBar />
       <Hero />

@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+/* import {useState, useEffect} from "react";
 import TaskList from "../../components/TaskList/TaskList";
 
 function Home () {
@@ -28,4 +28,4 @@ useEffect(() => {
 
 }
 
-export default Home;
+export default Home; */

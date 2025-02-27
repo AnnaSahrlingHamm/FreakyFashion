@@ -1,10 +1,10 @@
 import React from "react";
-import "./Footer.module.css";
+import styles from "./Footer.module.css"; // Importera CSS-modulen
 
 const Footer = () => {
   return (
-    <footer className="footerlarge">
-      <table className="footertable">
+    <footer className={styles.footerlarge}> {/* Använd styles.footerlarge */}
+      <table className={styles.footertable}> {/* Använd styles.footertable */}
         <thead>
           <tr>
             <th>Shopping</th>
