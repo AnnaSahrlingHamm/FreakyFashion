@@ -3,8 +3,8 @@ import styles from "./Footer.module.css"; // Importera CSS-modulen
 
 const Footer = () => {
   return (
-    <footer className={styles.footerlarge}> {/* Använd styles.footerlarge */}
-      <table className={styles.footertable}> {/* Använd styles.footertable */}
+    <footer className={styles.footerlarge}>
+      <table className={styles.footertable}>
         <thead>
           <tr>
             <th>Shopping</th>
@@ -25,13 +25,13 @@ const Footer = () => {
           </tr>
           <tr>
             <td>Kappor</td>
-            <td></td>
-            <td></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td>Trenchcoats</td>
-            <td></td>
-            <td></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
           </tr>
         </tbody>
       </table>

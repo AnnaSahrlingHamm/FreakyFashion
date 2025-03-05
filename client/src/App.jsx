@@ -3,6 +3,7 @@ import './App.css';
 import { Routes, Route, Link, HashRouter } from 'react-router-dom';
 import Index from './pages/Index/Index';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
+import AddProduct from './pages/Admin/AddProduct';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetails />} />
 
           {/* Lägg till produkt (admin eller användare med rättigheter) */}
-         {/* <Route path="/add-product" element={<AddProduct />} /> */}
+          <Route path="/admin/add-product" element={<AddProduct />} /> 
 
           {/* Varukorg */}
           {/* <Route path="/cart" element={<Cart />} /> */}

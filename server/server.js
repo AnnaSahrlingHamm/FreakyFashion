@@ -2,6 +2,7 @@ import express from "express";
 import Database from "better-sqlite3";
 import cors from "cors";
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
 
 dotenv.config();
 const app = express();
@@ -9,6 +10,8 @@ const db = new Database('./db/freakyfashion.db');
 
 app.use(cors());
 app.use(express.json());
+
+app.use(bodyParser.json());
 
 // 🟢 Hämta alla produkter
 app.get("/api/products", (req, res) => {
@@ -27,6 +30,7 @@ app.get("/api/products/:slug", (req, res) => {
 
 // 🟢 Lägg till en ny produkt
 app.post("/api/products", (req, res) => {
+    console.log("Inkommande data:", req.body);
     const { image, item, brand, description, price, slug, sku } = req.body;
     const stmt = db.prepare("INSERT INTO products (image, item, brand, description, price, slug, sku) VALUES (?, ?, ?, ?, ?, ?, ?)");
     const result = stmt.run(image, item, brand, description, price, slug, sku);
@@ -52,6 +56,13 @@ app.delete("/api/products/:id", (req, res) => {
         return res.status(404).json({ error: "Product not found" });
     }
     res.json({ message: "Product deleted" });
+});
+
+app.post("/api/customers", (req, res) => {
+    const { first_name, last_name, email, address, postal_code, city, phone_number } = req.body; 
+    const stmt = db.prepare("INSERT INTO customers (first_name, last_name, email, address, postal_code, city, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    const result = stmt.run(first_name, last_name, email, address, postal_code, city, phone_number);
+    res.json({ id: result.lastInsertRowid, first_name, last_name, email, address, postal_code, city, phone_number});
 });
 
 // Starta servern
