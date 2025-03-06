@@ -4,6 +4,7 @@ import { Routes, Route, Link, HashRouter } from 'react-router-dom';
 import Index from './pages/Index/Index';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import AddProduct from './pages/Admin/AddProduct';
+import AllProducts from './pages/Admin/AllProducts';
 import Checkout from './pages/Checkout/Checkout';
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
           <Route path="/" element={<Index />} />
 
           {/* Alla produkter */}
-          {/* <Route path="/products" element={<Products />} /> */}
+          <Route path="/admin/products" element={<AllProducts />} />
 
           {/* Enskild produkt */}
           <Route path="/products/:id" element={<ProductDetails />} />
