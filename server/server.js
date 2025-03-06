@@ -59,6 +59,7 @@ app.delete("/api/products/:id", (req, res) => {
 });
 
 app.post("/api/customers", (req, res) => {
+    console.log("Inkommande kunddata:", req.body);
     const { first_name, last_name, email, address, postal_code, city, phone_number } = req.body; 
     const stmt = db.prepare("INSERT INTO customers (first_name, last_name, email, address, postal_code, city, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?)");
     const result = stmt.run(first_name, last_name, email, address, postal_code, city, phone_number);

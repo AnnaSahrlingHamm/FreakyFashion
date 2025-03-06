@@ -4,6 +4,7 @@ import { Routes, Route, Link, HashRouter } from 'react-router-dom';
 import Index from './pages/Index/Index';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import AddProduct from './pages/Admin/AddProduct';
+import Checkout from './pages/Checkout/Checkout';
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
           {/* <Route path="/cart" element={<Cart />} /> */}
 
           {/* Kassa */}
-          {/* <Route path="/checkout" element={<Checkout />} /> */}
+          <Route path="/checkout" element={<Checkout />} />
 
           {/* Fallback om ingen route matchar */}
           <Route path="*" element={<h2>Sidan hittades inte</h2>} />
