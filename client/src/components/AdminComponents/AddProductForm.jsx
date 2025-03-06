@@ -52,13 +52,15 @@ function AddProductForm() {
           <h1 id={styles.newProductTitle}>Ny produkt</h1>
           <br />
           <form onSubmit={handleSubmit}>
-            <h3>Namn</h3>
+          <h3>Namn</h3>
             <input
               type="text"
               name="item"
               placeholder="Ange namn"
               value={formData.item}
               onChange={handleInputChange}
+              maxLength="25"
+              required
             />
 
             <h3>Beskrivning</h3>
@@ -71,11 +73,12 @@ function AddProductForm() {
 
             <h3>Bild</h3>
             <input
-              type="text"
+              type="url"
               name="image"
-              placeholder="Ladda upp bild"
+              placeholder="Lägg till bild-URL"
               value={formData.image}
               onChange={handleInputChange}
+              required
             />
 
             <h3>Märke</h3>
@@ -91,10 +94,14 @@ function AddProductForm() {
             <input
               type="text"
               name="sku"
-              placeholder="Ange SKU"
+              placeholder="Ange SKU (ABC123)"
               value={formData.sku}
               onChange={handleInputChange}
+              pattern="[A-Z]{3}[0-9]{3}"
+              required
+              title="SKU måste vara i formatet ABC123 (tre bokstäver A-Z följt av tre siffror 0-9)"
             />
+
 
             <h3>Pris</h3>
             <input
