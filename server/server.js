@@ -29,13 +29,30 @@ app.get("/api/products/:slug", (req, res) => {
 });
 
 // 🟢 Lägg till en ny produkt
-app.post("/api/products", (req, res) => {
-    console.log("Inkommande data:", req.body);
-    const { image, item, brand, description, price, slug, sku } = req.body;
-    const stmt = db.prepare("INSERT INTO products (image, item, brand, description, price, slug, sku) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    const result = stmt.run(image, item, brand, description, price, slug, sku);
-    res.json({ id: result.lastInsertRowid, image, item, brand, description, price, slug, sku});
-});
+app.post("/api/products", async (req, res) => {
+    const { image, item, brand, description, price, sku } = req.body;
+  
+    // Generera en unik slug
+    const slug = await generateSlug(item);
+  
+    // Lägg till produkt i databasen
+    const stmt = db.prepare(`
+      INSERT INTO products (image, item, brand, description, price, sku, slug)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+    const result = stmt.run(image, item, brand, description, price, sku, slug);
+  
+    res.json({
+      id: result.lastInsertRowid,
+      image,
+      item,
+      brand,
+      description,
+      price,
+      sku,
+      slug,
+    });
+  });
 
 // 🟢 Uppdatera en produkt
 app.put("/api/products/:id", (req, res) => {
@@ -57,6 +74,28 @@ app.delete("/api/products/:id", (req, res) => {
     }
     res.json({ message: "Product deleted" });
 });
+
+app.get("/api/products", (req, res) => {
+    const searchTerm = req.query.q || ""; // Hämta söksträngen från query-parametern
+    const query = `
+      SELECT * FROM products
+      WHERE name LIKE ?;
+    `;
+    const searchPattern = `%${searchTerm}%`; // Sök efter delsträngar
+    const products = db.prepare(query).all(searchPattern);
+    res.json(products);
+  });
+
+  app.get("/api/products/:slug", (req, res) => {
+    const { slug } = req.params;
+    const product = db.prepare("SELECT * FROM products WHERE slug = ?").get(slug);
+  
+    if (!product) {
+      return res.status(404).json({ error: "Produkten hittades inte" });
+    }
+  
+    res.json(product);
+  });
 
 app.post("/api/customers", (req, res) => {
     console.log("Inkommande kunddata:", req.body);

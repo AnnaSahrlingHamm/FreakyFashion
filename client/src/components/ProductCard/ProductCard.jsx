@@ -1,8 +1,15 @@
 import React from 'react';
 import styles from "./ProductCard.module.css"; // Importera CSS-modulen
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-function ProductCard({ product }) {
+const ProductCard = ({ product }) => {
+    const navigate = useNavigate();
+  
+    const handleClick = () => {
+      // Navigera till produktens detaljsida med slug som URL-parameter
+      navigate(`/products/${product.slug}`);
+    };
     return (
         <div className={styles.productContainer}>
             {/* Bild-sektionen */}
@@ -12,7 +19,6 @@ function ProductCard({ product }) {
                     <i className="bi bi-heart"></i> {/* Bootstrap ikon */}
                 </article>
             </section>
-
             {/* Produkt-info */}
             <section className={styles.productinfo}>
                 <h3>{product.item}</h3>

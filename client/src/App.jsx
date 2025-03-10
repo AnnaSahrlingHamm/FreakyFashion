@@ -6,6 +6,7 @@ import ProductDetails from './pages/ProductDetails/ProductDetails';
 import AddProduct from './pages/Admin/AddProduct';
 import AllProducts from './pages/Admin/AllProducts';
 import Checkout from './pages/Checkout/Checkout';
+import SearchResults from './pages/SearchResults/SearchResults';
 
 function App() {
   return (
@@ -32,6 +33,10 @@ function App() {
 
           {/* Lägg till produkt (admin eller användare med rättigheter) */}
           <Route path="/admin/add-product" element={<AddProduct />} /> 
+
+          <Route path="/search" element={<SearchResults />} />
+          
+          <Route path="/products/:slug" element={<ProductDetails />} />
 
           {/* Varukorg */}
           {/* <Route path="/cart" element={<Cart />} /> */}
