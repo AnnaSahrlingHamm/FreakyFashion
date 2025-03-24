@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
       {/* Bild-sektionen */}
       <section className={styles.productcontainer}>
         <article id="bild">
-          <img src={product.image} alt={product.item} />
+        <img src={`/images/${product.image}`} alt={product.item} />
           <i className="bi bi-heart"></i> {/* Bootstrap ikon */}
         </article>
       </section>

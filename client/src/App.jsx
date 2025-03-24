@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {HashRouter as Router, Routes, Route, Link, HashRouter } from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { CartProvider } from "./CartContext"; // Importera CartProvider
 import Index from './pages/Index/Index';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
