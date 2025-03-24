@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Routes, Route, Link, HashRouter } from 'react-router-dom';
+import {HashRouter as Router, Routes, Route, Link, HashRouter } from 'react-router-dom';
 import { CartProvider } from "./CartContext"; // Importera CartProvider
 import Index from './pages/Index/Index';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
@@ -14,7 +14,7 @@ import Basket from './pages/Basket/Basket';
 
 function App() {
   return (
-    <HashRouter>
+    <Router>
       <header>
         <Link to="/">
           <h1>Välkommen till Freaky Fashion!</h1>
@@ -51,7 +51,7 @@ function App() {
         </Routes>
       </CartProvider>
       </main>
-    </HashRouter>
+    </Router>
   );
 }
 
