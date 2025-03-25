@@ -1,49 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductCarousel from "../../components/ProductCarousel/ProductCarousel";
 
 const ProductDetails = () => {
-    const { slug } = useParams(); // Ändrat från id till slug
+    const { slug } = useParams();
     const [product, setProduct] = useState(null);
     const [similarProducts, setSimilarProducts] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Hämta den enskilda produkten
-        fetch(`/api/products/${slug}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Produkten hittades inte');
-                }
-                return response.json();
-            })
-            .then(data => setProduct(data))
-            .catch(error => {
-                console.error("Fel vid hämtning av produkt:", error);
-                setError(error.message);
-            });
+        const fetchData = async () => {
+            try {
+                // Hämta huvudprodukt
+                const productRes = await fetch(`/api/products/${slug}`);
+                if (!productRes.ok) throw new Error('Produkt ej hittad');
+                const productData = await productRes.json();
+                setProduct(productData);
 
-        // Hämta liknande produkter
-        fetch(`/api/products/${slug}/similar`)
-            .then(response => response.json())
-            .then(data => setSimilarProducts(data))
-            .catch(error => console.error("Fel vid hämtning av liknande produkter:", error));
+                // Hämta liknande produkter
+                const similarRes = await fetch(`/api/products/${slug}/similar`);
+                const similarData = await similarRes.json();
+                setSimilarProducts(similarData);
+            } catch (error) {
+                console.error("Fetch error:", error);
+                setError(error.message);
+            }
+        };
+
+        fetchData();
     }, [slug]);
 
     if (error) return <p>{error}</p>;
     if (!product) return <p>Laddar produkt...</p>;
 
     return (
-        <div>
-            <h2>Produktdetaljer</h2>
+        <div className="product-details-container">
             <ProductCard product={product} />
 
             <h2 id="liknandeProdukter">Liknande produkter</h2>
-            <section className="similarProducts">
-                {similarProducts.map(similarProduct => (
-                    <ProductCard key={similarProduct.id} product={similarProduct} />
-                ))}
-            </section>
+            {similarProducts.length > 0 ? (
+                <ProductCarousel products={similarProducts} />
+            ) : (
+                <p>Inga liknande produkter hittades</p>
+            )}
         </div>
     );
 };

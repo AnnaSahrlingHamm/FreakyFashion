@@ -42,7 +42,7 @@ app.get("/api/products", (req, res) => {
 // 2. Hämta en enskild produkt via slug
 app.get("/api/products/:slug", (req, res) => {
   const { slug } = req.params;
-  console.log(`Fetching product with slug: ${slug}`); // Debug logging
+  console.log(`Fetching product with slug: ${slug}`);
   
   const product = db.prepare(`
     SELECT * FROM products 
@@ -50,28 +50,14 @@ app.get("/api/products/:slug", (req, res) => {
   `).get(slug);
 
   if (!product) {
-    console.log(`Product not found with slug: ${slug}`); // Debug logging
+    console.log(`Product not found with slug: ${slug}`);
     return res.status(404).json({ error: "Product not found" });
   }
   
   res.json(product);
 });
 
-// 3. Hämta liknande produkter
-app.get("/api/products/:slug/similar", (req, res) => {
-  const { slug } = req.params;
-  
-  // Först hämta huvudprodukten för att få kategori/etc
-  const mainProduct = db.prepare(`
-    SELECT * FROM products 
-    WHERE slug = ?
-  `).get(slug);
-
-  if (!mainProduct) {
-    return res.status(404).json({ error: "Main product not found" });
-  }
-
- // Uppdatera /api/products/:slug/similar route
+// 3. Hämta liknande produkter (endast en implementation)
 app.get("/api/products/:slug/similar", (req, res) => {
   const { slug } = req.params;
   
@@ -94,7 +80,19 @@ app.get("/api/products/:slug/similar", (req, res) => {
   res.json(similarProducts);
 });
 
-// Övriga routes (POST, PUT, DELETE) förblir oförändrade...
+// Övriga routes (POST, PUT, DELETE)
+app.post("/api/products", async (req, res) => {
+  const { image, item, brand, description, price, sku } = req.body;
+  const slug = generateSlug(item);
+  
+  const stmt = db.prepare(`
+    INSERT INTO products (image, item, brand, description, price, sku, slug)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `);
+  
+  const result = stmt.run(image, item, brand, description, price, sku, slug);
+  res.json({ id: result.lastInsertRowid, ...req.body, slug });
+});
 
 // Starta servern
 const PORT = process.env.PORT || 8000;
