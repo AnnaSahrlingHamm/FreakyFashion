@@ -1,14 +1,22 @@
-//const images = import.meta.glob("/assets/images/*.{jpg,png,webp}", { eager: true });
-const images = import.meta.glob("../assets/images/*.{jpg,png,webp}", { eager: true });
+// const images = import.meta.glob("../assets/Images/*.{jpg,png,webp}", { eager: true });
+const productImages = import.meta.glob('/src/assets/images/*.{jpg,png,webp}', { eager: true });
 
-const exports = {};
+export default Object.fromEntries(
+  Object.entries(productImages).map(([key, value]) => {
+    // Extrahera filnamnet (utan mapp och ändelse)
+    const fileName = key.split('/').pop().split('.')[0];
+    return [fileName, value.default];
+  })
+);
+
+
+/* const exports = {};
 for (const path in images) {
   const name = path.split("/").pop().split(".")[0]; // Tar bara filnamnet utan ändelsen
   exports[name] = images[path].default;
 }
 
-export default exports;
-
+export default exports; */
 
 
 

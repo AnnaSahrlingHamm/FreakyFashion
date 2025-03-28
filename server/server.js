@@ -39,6 +39,16 @@ app.get("/api/products", (req, res) => {
   res.json(products);
 });
 
+app.get("/api/products/featured", (req, res) => {
+  const products = db.prepare(`
+    SELECT * FROM products 
+    ORDER BY RANDOM()
+    LIMIT 8
+  `).all();
+  res.json(products);
+});
+
+
 // 2. Hämta en enskild produkt via slug
 app.get("/api/products/:slug", (req, res) => {
   const { slug } = req.params;

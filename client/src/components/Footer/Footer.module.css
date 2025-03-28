@@ -1,7 +1,99 @@
+/* Accordion styles for mobile */
 .footersmall {
-    padding: 20px;
-    text-align: center;
+  background-color: #f8f9fa;
+  padding: 1rem;
+}
+
+.accordion {
+  width: 100%;
+}
+
+.accordionItem {
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.accordionHeader {
+  margin-bottom: 0;
+}
+
+/* Accordion styles */
+.accordionButton {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  text-align: left;
+  background: #f8f9fa;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.accordionButton:hover {
+  background-color: #e9ecef;
+}
+ 
+.accordionButton.collapsed {
+  background: #fff;
+}
+
+.accordionIcon {
+  position: absolute;
+  right: 1rem;
+  font-weight: bold;
+}
+
+.accordionCollapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.accordionCollapse.show {
+  max-height: 500px; /* Anpassa efter innehållets höjd */
+}
+
+
+.accordionBody {
+  padding: 0 1rem 1rem;
+}
+
+.accordionBody ul {
+  list-style: none;
+  padding: 0;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.accordionBody li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Responsive visibility */
+.d-none {
+  display: none;
+}
+
+.d-md-block {
+  display: block;
+}
+
+.d-md-none {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .d-md-block {
+    display: block;
   }
+  .d-md-none {
+    display: none;
+  }
+}
   
   .footertable {
     display: none;
