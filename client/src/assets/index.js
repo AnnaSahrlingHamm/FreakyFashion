@@ -1,4 +1,5 @@
-const images = import.meta.glob("./images/*.{jpg,png}", { eager: true });
+//const images = import.meta.glob("/assets/images/*.{jpg,png,webp}", { eager: true });
+const images = import.meta.glob("../assets/images/*.{jpg,png,webp}", { eager: true });
 
 const exports = {};
 for (const path in images) {

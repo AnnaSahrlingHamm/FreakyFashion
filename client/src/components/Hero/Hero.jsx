@@ -1,17 +1,9 @@
-/* const Hero = () => {
-  console.log("Hero renderas!");
-  return <h2>Hero fungerar!</h2>;
-};
-
-export default Hero;
- */
-
 import images from "../../assets/index.js";
 import styles from "./Hero.module.css"; // Importera CSS-modulen
 
 const Hero = () => {
   return (
-    <section className={styles.hero}> {/* Använd styles.hero */}
+    <section className={styles.hero}> 
       <img
         src={images.hero500w} // Standardbild
         srcSet={`
@@ -24,7 +16,7 @@ const Hero = () => {
         alt="fashionable woman"
       />
       <br />
-      <p className={styles.heroText}> {/* Använd styles.heroText */}
+      <p className={styles.heroText}> 
         Lorem ipsum dolor sit amet<br />
         consectetur adipisicing elit.
       </p>

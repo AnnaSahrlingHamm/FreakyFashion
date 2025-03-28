@@ -53,24 +53,26 @@ header {
     background-color: orange;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 2);
   }
-  
-  i.bi-heart-fill {
-    font-size: 1em;
-  }
-  
-  i.bi-heart-fill:hover {
+
+  .icon {
     font-size: 1.5em;
-    color: orange;
+    color: grey;
+    padding: 5px;
+    transition: all 0.3s ease;
   }
   
-  i.bi-basket2-fill {
-    font-size: 1em;
+  .icon:hover {
+    font-size: 1.8em;
   }
   
-  i.bi-basket2-fill:hover {
-    font-size: 1.5em;
-    color: blueviolet;
+  .icon:first-child:hover {
+    color: orange; /* För hjärtikonen */
   }
+  
+  .icon:last-child:hover {
+    color: blueviolet; /* För varukorgsikonen */
+  }
+  
 
   @media (min-width: 640px) {
   
@@ -136,6 +138,8 @@ header {
       display: flex;
       align-items: center;
       margin-left: auto;
+      padding-right: 40px;
+      padding-bottom: 20px;
     }
   
     .iconlinks {

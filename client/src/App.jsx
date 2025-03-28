@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+// import './App.css';
 import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { CartProvider } from "./CartContext"; // Importera CartProvider
 import Index from './pages/Index/Index';
@@ -15,15 +15,6 @@ import Basket from './pages/Basket/Basket';
 function App() {
   return (
     <Router>
-      <header>
-        <Link to="/">
-          <h1>Välkommen till Freaky Fashion!</h1>
-        </Link>
-        <nav>
-          <Link to="/products">Produkter</Link>
-          <Link to="/basket" id="basket">Varukorg</Link>
-        </nav>
-      </header>
       <main>
       <CartProvider>
         <Routes>

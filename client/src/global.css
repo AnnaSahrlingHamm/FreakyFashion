@@ -46,3 +46,66 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* ============================= */
+/* GLOBAL LAYOUT STYLES */
+/* ============================= */
+
+/* Grundläggande inställningar */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+  }
+  
+  /* Wrapper för att centrera och styra sidbredd */
+  .container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 10px;
+	display: flex;
+	flex-direction: column; /* Staplar komponenterna vertikalt */
+	gap: 40px; /* Lägger till mellanrum mellan barn-element */
+  }
+  
+  
+
+
+  
+  /* ============================= */
+  /* MOBILE-FIRST LAYOUT (0 - 639px) */
+  /* ============================= */
+  
+  .main-layout {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+  }
+  
+  /* ============================= */
+  /* TABLET LAYOUT (min-width: 640px) */
+  /* ============================= */
+  @media (min-width: 640px) {
+	.main-layout {
+	  display: grid;
+	  grid-template-columns: 1fr 3fr;
+	  gap: 20px;
+	}
+  }
+  
+  /* ============================= */
+  /* DESKTOP LAYOUT (min-width: 1024px) */
+  /* ============================= */
+  @media (min-width: 1024px) {
+	.main-layout {
+	  grid-template-columns: 1fr 4fr;
+	}
+  }
+  
