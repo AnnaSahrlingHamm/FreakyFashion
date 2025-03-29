@@ -18,7 +18,7 @@ const Index = () => {
 
     const fetchFeaturedProducts = async () => {
       try {
-        const response = await fetch("/api/products/featured");
+        const response = await fetch("http://localhost:8000/api/products/featured");
         if (!response.ok) {
           throw new Error('Något gick fel vid hämtning av produkter');
         }

@@ -8,7 +8,10 @@ dotenv.config();
 const app = express();
 const db = new Database('./db/freakyfashion.db'); 
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 app.use(express.json());
 app.use(bodyParser.json());
 
@@ -20,23 +23,29 @@ const generateSlug = (item) => {
     .replace(/[^\w\-]+/g, '');
 };
 
-// 1. Hämta alla produkter
+// Uppdatera sökendpointen i server.js
 app.get("/api/products", (req, res) => {
-  const searchTerm = req.query.q || "";
+  const searchTerm = req.query.q?.trim() || "";
   
-  if (searchTerm) {
-    // Sökfunktionalitet
-    const searchPattern = `%${searchTerm}%`;
-    const products = db.prepare(`
-      SELECT * FROM products 
-      WHERE item LIKE ? OR description LIKE ?
-    `).all(searchPattern, searchPattern);
-    return res.json(products);
+  try {
+    if (searchTerm) {
+      const searchPattern = `%${searchTerm}%`;
+      const products = db.prepare(`
+        SELECT * FROM products 
+        WHERE item LIKE ? OR description LIKE ? OR brand LIKE ?
+      `).all(searchPattern, searchPattern, searchPattern);
+      
+      return res.json(products);
+    }
+    
+    // Om ingen sökterm - returnera alla produkter
+    const products = db.prepare("SELECT * FROM products").all();
+    res.json(products);
+    
+  } catch (error) {
+    console.error("Database error:", error);
+    res.status(500).json({ error: "Server error" });
   }
-  
-  // Vanlig hämtning av alla produkter
-  const products = db.prepare("SELECT * FROM products").all();
-  res.json(products);
 });
 
 app.get("/api/products/featured", (req, res) => {

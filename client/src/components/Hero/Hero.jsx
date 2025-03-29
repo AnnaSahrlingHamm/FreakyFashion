@@ -1,14 +1,16 @@
-import { productImages } from "../../assets/index.js";
+//import hero from "../../assets/images/nonProductImgs/hero.jpg";
+import hero500w from "../../assets/images/nonProductImgs/hero500w.jpg";
+import hero_large from "../../assets/images/nonProductImgs/hero_large.jpg";
 import styles from "./Hero.module.css"; // Importera CSS-modulen
 
 const Hero = () => {
   return (
     <section className={styles.hero}> 
       <img
-        src={productImages.hero500w} // Standardbild
+        src={hero500w} 
         srcSet={`
-          ${productImages.hero500w} 500w,
-          ${productImages.hero_large} 600w
+          ${hero500w} 500w,
+          ${hero_large} 600w
         `}
         sizes="(max-width: 640px) 500px, 
                (max-width: 1023px) 600px, 

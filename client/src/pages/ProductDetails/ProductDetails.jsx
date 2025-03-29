@@ -19,6 +19,9 @@ const ProductDetails = () => {
               fetch(`/api/products/${slug}`),
               fetch(`/api/products/${slug}/similar`)
             ]);
+
+            console.log("Produktresponse status:", productRes.status);
+
             
             if (!productRes.ok) throw new Error('Produkt ej hittad');
             

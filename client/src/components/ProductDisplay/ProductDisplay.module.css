@@ -16,6 +16,8 @@
     flex-direction: column;
     width: fit-content;
   }
+
+ 
   
   .productImage {
     object-fit: cover;

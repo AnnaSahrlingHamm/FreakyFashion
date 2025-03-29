@@ -6,30 +6,47 @@ import PropTypes from 'prop-types';
 import { productImages } from '../../assets/index.js';
 
 const ProductDisplay = ({ products = [], isCarouselItem = false }) => {
-  if (!products || products.length === 0) {
+  // Förbättrad felhantering
+  if (!products || !Array.isArray(products)) {
+    console.error("Invalid products prop:", products);
+    return <div className={styles.empty}>Ogiltig produktdata</div>;
+  }
+
+  if (products.length === 0) {
     return <div className={styles.empty}>Inga produkter att visa</div>;
   }
 
   return (
     <section className={styles.imageContainer}>
       {products.map((product) => {
-        if (!product || !product.image) return null;
-        
-        const imageBase = product.image.replace('.webp', '');
+        // Förbättrad produktvalidering
+        if (!product || typeof product !== 'object') {
+          console.warn("Invalid product item:", product);
+          return null;
+        }
+
+        // Säker bildhantering
+        const imageBase = product.image?.replace('.webp', '') || '';
         const imagePath = productImages[imageBase] || '/placeholder.webp';
 
+        // Fallback-värden för obligatoriska fält
+        const productId = product.id || Math.random().toString(36).substr(2, 9);
+        const productSlug = product.slug || 'saknas';
+        const productName = product.item || 'Namn saknas';
+        const productPrice = product.price !== undefined ? product.price : 'Pris saknas';
+
         return (
-          <ul key={product.id} className={`${styles.productList} ${isCarouselItem ? styles.carouselItem : ''}`}>
+          <ul key={productId} className={`${styles.productList} ${isCarouselItem ? styles.carouselItem : ''}`}>
             <li>
               <figure className={styles.productCard}>
-                <Link to={`/products/${product.slug}`}>
+                <Link to={`/products/${productSlug}`}>
                   <img 
                     src={imagePath}
-                    alt={product.item || 'Produktbild'}
+                    alt={productName}
                     className={styles.productImage}
                     onError={(e) => {
                       e.target.src = '/placeholder.webp';
-                      console.error('Bilden kunde inte laddas:', e.target.src);
+                      console.error('Bilden kunde inte laddas:', product.image);
                     }}
                   />
                 </Link>
@@ -46,7 +63,8 @@ const ProductDisplay = ({ products = [], isCarouselItem = false }) => {
                 )}
                 
                 <figcaption className={styles.productTitle}>
-                  {product.item} - {product.price} SEK
+                  {productName} - {productPrice} SEK
+                  {product.brand && <span className={styles.brand}> | {product.brand}</span>}
                 </figcaption>
               </figure>
             </li>
@@ -60,11 +78,11 @@ const ProductDisplay = ({ products = [], isCarouselItem = false }) => {
 ProductDisplay.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      item: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      slug: PropTypes.string,
+      image: PropTypes.string,
+      item: PropTypes.string,
+      price: PropTypes.number,
       brand: PropTypes.string,
       isNew: PropTypes.bool,
     })
