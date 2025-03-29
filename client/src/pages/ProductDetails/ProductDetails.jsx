@@ -1,41 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Header from "../../components/Header/Header";
+import NavBar from "../../components/NavBar/NavBar";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import ProductCarousel from "../../components/ProductCarousel/ProductCarousel";
+import IconLinks from "../../components/IconLinks/IconLinks";
+import Footer from "../../components/Footer/Footer";
 
 const ProductDetails = () => {
     const { slug } = useParams();
     const [product, setProduct] = useState(null);
     const [similarProducts, setSimilarProducts] = useState([]);
     const [error, setError] = useState(null);
-
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                // Hämta huvudprodukt
-                const productRes = await fetch(`/api/products/${slug}`);
-                if (!productRes.ok) throw new Error('Produkt ej hittad');
-                const productData = await productRes.json();
-                setProduct(productData);
-
-                // Hämta liknande produkter
-                const similarRes = await fetch(`/api/products/${slug}/similar`);
-                const similarData = await similarRes.json();
-                setSimilarProducts(similarData);
-            } catch (error) {
-                console.error("Fetch error:", error);
-                setError(error.message);
-            }
+          try {
+            const [productRes, similarRes] = await Promise.all([
+              fetch(`/api/products/${slug}`),
+              fetch(`/api/products/${slug}/similar`)
+            ]);
+            
+            if (!productRes.ok) throw new Error('Produkt ej hittad');
+            
+            setProduct(await productRes.json());
+            setSimilarProducts(await similarRes.json());
+          } catch (error) {
+            setError(error.message);
+          }
         };
-
+      
         fetchData();
-    }, [slug]);
+      }, [slug]);
 
     if (error) return <p>{error}</p>;
     if (!product) return <p>Laddar produkt...</p>;
 
     return (
-        <div className="product-details-container">
+        <div className="container">
+            <Header />
+            <NavBar />
+            <div className="product-details-container">
             <ProductCard product={product} />
 
             <h2 id="liknandeProdukter">Liknande produkter</h2>
@@ -44,6 +48,9 @@ const ProductDetails = () => {
             ) : (
                 <p>Inga liknande produkter hittades</p>
             )}
+            </div>
+            <IconLinks />
+            <Footer />
         </div>
     );
 };

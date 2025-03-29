@@ -1,24 +1,38 @@
-@media (min-width: 640px) {
-    .carouselItem {
-      flex: 0 0 calc(50% - 10px);
-    }
-  }
+/* Dölj karusellen på mobil som standard */
 .carouselContainer {
+  display: none; 
+}
+
+/* Visa karusellen från 640px och uppåt */
+@media (min-width: 640px) {
+  .carouselContainer {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
     overflow: hidden;
-    padding: 20px 0;
   }
   
   .carousel {
     display: flex;
-    gap: 20px;
+    gap: 1rem;
+    padding: 1rem;
+    padding-bottom: 20px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding-bottom: 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
-  
+
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+
   .carouselItem {
-    flex: 0 0 calc(33.333% - 14px);
+    flex: 0 0 auto;
     scroll-snap-align: start;
+    width: 80%;
     cursor: pointer;
     transition: transform 0.3s ease;
     border: 1px solid #eee;
@@ -30,34 +44,34 @@
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   }
-  
-  .productImage {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 4px;
+
+  .navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
-  
-  .productInfo {
-    padding: 10px 0;
+
+  .navButton:first-child {
+    left: -20px;
   }
-  
-  .brand {
-    color: #666;
-    font-size: 0.9rem;
+
+  .navButton:last-child {
+    right: -20px;
   }
-  
-  .price {
-    font-weight: bold;
-    color: #333;
-    margin-top: 5px;
+}
+
+/* Anpassning för större skärmar */
+@media (min-width: 1024px) {
+  .carouselItem {
+    width: 280px; /* Lite större kort på desktop */
   }
-  
- 
-  @media (min-width: 1024px) {
-    .carouselItem {
-      flex: 0 0 calc(50% - 10px);
-    }
-  }
-  
- 
+}

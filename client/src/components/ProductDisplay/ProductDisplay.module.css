@@ -1,5 +1,6 @@
 /* ProductDisplay.module.css */
 
+
 .imageContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -74,3 +75,27 @@
     left: 10px;
     z-index: 10;
   }
+
+  /* Karusellspecifika stilar */
+.carouselItem .productList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.carouselItem .productCard {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.carouselItem .productImage {
+  height: 200px;
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .carouselItem .productImage {
+    height: 250px;
+  }
+}

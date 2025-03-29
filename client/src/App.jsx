@@ -18,13 +18,11 @@ function App() {
       <main>
       <CartProvider>
         <Routes>
-          {/* Start-sidan */}
+        
           <Route path="/" element={<Index />} />
 
-          {/* Alla produkter */}
           <Route path="/admin/products" element={<AllProducts />} />
-
-          {/* Lägg till produkt (admin eller användare med rättigheter) */}
+ 
           <Route path="/admin/add-product" element={<AddProduct />} /> 
 
           <Route path="/search" element={<SearchResults />} />

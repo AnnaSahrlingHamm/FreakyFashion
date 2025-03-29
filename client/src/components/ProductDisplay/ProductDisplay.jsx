@@ -3,58 +3,56 @@ import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styles from "./ProductDisplay.module.css";
 import PropTypes from 'prop-types';
-import productImages from '../../assets/index.js/';
+import { productImages } from '../../assets/index.js';
 
-
-const ProductDisplay = ({ products }) => {
-  // Funktion för att konvertera "DD-MM-YYYY" till Date-objekt
-  const parseCustomDate = (dateString) => {
-    if (!dateString) return null;
-    
-    const [day, month, year] = dateString.split('-');
-    return new Date(`${year}-${month}-${day}`);
-  };
-
-  // Kontrollera om produkten är ny (mindre än 7 dagar gammal)
-  const isNewProduct = (publishedDate) => {
-    const published = parseCustomDate(publishedDate);
-    if (!published) return false;
-    
-    const now = new Date();
-    const diffInDays = Math.floor((now - published) / (1000 * 60 * 60 * 24));
-    return diffInDays < 7;
-  };
+const ProductDisplay = ({ products = [], isCarouselItem = false }) => {
+  if (!products || products.length === 0) {
+    return <div className={styles.empty}>Inga produkter att visa</div>;
+  }
 
   return (
     <section className={styles.imageContainer}>
-      {products.map((product) => (
-        <ul key={product.id} className={styles.productList}>
-          <li>
-            <figure className={styles.productCard}>
-              <Link to={`/product-details/${product.slug}`}>
-              <img 
-                src={productImages[product.image.replace(/\.\w+$/, '')] || '/fallback.jpg'} 
-                alt={product.item} 
-                className={styles.productImage} 
-              />
+      {products.map((product) => {
+        if (!product || !product.image) return null;
+        
+        const imageBase = product.image.replace('.webp', '');
+        const imagePath = productImages[imageBase] || '/placeholder.webp';
 
-              </Link>
-              <button className={styles.heartIcon}>
-                <FaHeart />
-              </button>
-              {isNewProduct(product.published) && (
-                <div className={styles.badge}>Nyhet!</div>
-              )}
-              <figcaption className={styles.productTitle}>
-                {product.item} - {product.price} SEK
-              </figcaption>
-              <figcaption className={styles.productBrand}>
-                {product.brand}
-              </figcaption>
-            </figure>
-          </li>
-        </ul>
-      ))}
+        return (
+          <ul key={product.id} className={`${styles.productList} ${isCarouselItem ? styles.carouselItem : ''}`}>
+            <li>
+              <figure className={styles.productCard}>
+                <Link to={`/products/${product.slug}`}>
+                  <img 
+                    src={imagePath}
+                    alt={product.item || 'Produktbild'}
+                    className={styles.productImage}
+                    onError={(e) => {
+                      e.target.src = '/placeholder.webp';
+                      console.error('Bilden kunde inte laddas:', e.target.src);
+                    }}
+                  />
+                </Link>
+                
+                {!isCarouselItem && (
+                  <>
+                    <button className={styles.heartIcon}>
+                      <FaHeart />
+                    </button>
+                    {product.isNew && (
+                      <div className={styles.badge}>Nyhet!</div>
+                    )}
+                  </>
+                )}
+                
+                <figcaption className={styles.productTitle}>
+                  {product.item} - {product.price} SEK
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
+        );
+      })}
     </section>
   );
 };
@@ -67,10 +65,16 @@ ProductDisplay.propTypes = {
       image: PropTypes.string.isRequired,
       item: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
-      brand: PropTypes.string.isRequired,
+      brand: PropTypes.string,
       isNew: PropTypes.bool,
     })
-  ).isRequired,
+  ),
+  isCarouselItem: PropTypes.bool
+};
+
+ProductDisplay.defaultProps = {
+  products: [],
+  isCarouselItem: false
 };
 
 export default ProductDisplay;

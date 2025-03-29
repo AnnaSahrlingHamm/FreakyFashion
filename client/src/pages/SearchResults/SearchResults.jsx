@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import ProductCard from "../../components/ProductCard/ProductCard"; // Anta att du har en ProductCard-komponent
+import Header from "../../components/Header/Header";
+import NavBar from "../../components/NavBar/NavBar";
+import ProductCard from "../../components/ProductDisplay/ProductDisplay"; 
+import IconLinks from "../../components/IconLinks/IconLinks";
+import Footer from "../../components/Footer/Footer";
 
 const SearchResults = () => {
   const [products, setProducts] = useState([]);
@@ -29,17 +33,23 @@ const SearchResults = () => {
   }, [searchTerm]);
 
   return (
-    <div className="search-results">
-      <h2>Sökresultat för: "{searchTerm}"</h2>
-      {products.length > 0 ? (
-        <div className="product-grid">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      ) : (
-        <p>Inga produkter hittades.</p>
-      )}
+    <div className="container">
+        <Header />
+        <NavBar />
+      <div className="search-results">
+        <h2>Sökresultat för: "{searchTerm}"</h2>
+        {products.length > 0 ? (
+          <div className="product-grid">
+            {products.map((product) => (
+              <ProductDisplay key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <p>Inga produkter hittades.</p>
+        )}
+      </div>
+        <IconLinks />
+        <Footer />
     </div>
   );
 };
