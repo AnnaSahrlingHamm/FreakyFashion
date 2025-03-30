@@ -19,7 +19,6 @@
   margin-bottom: 0;
 }
 
-/* Accordion styles */
 .accordionButton {
   position: relative;
   width: 100%;
@@ -53,9 +52,8 @@
 }
 
 .accordionCollapse.show {
-  max-height: 500px; /* Anpassa efter innehållets höjd */
+  max-height: 500px; 
 }
-
 
 .accordionBody {
   padding: 0 1rem 1rem;
@@ -116,46 +114,34 @@
       }
     
       .footerlarge {
+        border-radius: 2px;
         display: flex;
-        justify-content: flex-start;
-        width: auto;
-        height: 200px;
-        padding: 20px;
-        background-color: lightgray;
+        justify-content: space-around;
+        padding: 40px 20px;
+        background-color:#e6e6f9;
+        flex-wrap: wrap;
       }
-    
-      .footertable {
-        display: inline-table;
-        border-collapse: collapse;
-        border: none;
-        background-color: transparent;
-        height: auto;
+      
+      .column {
+        flex: 1;
+        min-width: 150px;
+        margin: 0 20px;
       }
-    
-      .footertable thead,
-      .footertable th,
-      .footertable td,
-      .footertable tr {
-        border: none;
-        background-color: transparent;
-        padding-left: 20px;
-        padding-right: 20px;
-        text-align: left;
-      }
-
-      .footertable th {
+      
+      .column h4 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
         font-weight: bold;
-        padding-bottom: 20px;
       }
-  }
-
-  @media (min-width: 1024px) {
-    .footersmall {
-        display: none;
+      
+      .column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
-    
-      .footerlarge {
-        display: flex;
-        background-color: lightgray;
+      
+      .column li {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
       }
-  }
+    }      

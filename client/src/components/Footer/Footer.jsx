@@ -10,40 +10,31 @@ const Footer = () => {
 
   return (
     <>
-      {/* Desktop version */}
-      <footer className={`${styles.footerlarge} ${styles.dNone} ${styles.dMdBlock}`}>
-        <table className={styles.footertable}>
-          <thead>
-            <tr>
-              <th>Shopping</th>
-              <th>Mina Sidor</th>
-              <th>Kundtjänst</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Vinterjackor</td>
-              <td>Mina ordrar</td>
-              <td>Returnpolicy</td>
-            </tr>
-            <tr>
-              <td>Pufferjackor</td>
-              <td>Mitt konto</td>
-              <td>Integritetspolicy</td>
-            </tr>
-            <tr>
-              <td>Kappor</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>Trenchcoats</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-          </tbody>
-        </table>
-      </footer>
+    <footer className={styles.footerlarge}>
+      <div className={styles.column}>
+        <h4>Shopping</h4>
+        <ul>
+          <li>Vinterjackor</li>
+          <li>Pufferjackor</li>
+          <li>Kappor</li>
+          <li>Trenchcoats</li>
+        </ul>
+      </div>
+      <div className={styles.column}>
+        <h4>Mina Sidor</h4>
+        <ul>
+          <li>Mina ordrar</li>
+          <li>Mitt konto</li>
+        </ul>
+      </div>
+      <div className={styles.column}>
+        <h4>Kundtjänst</h4>
+        <ul>
+          <li>Returnpolicy</li>
+          <li>Integritetspolicy</li>
+        </ul>
+      </div>
+    </footer>
 
       {/* Mobile version */}
       <footer className={`${styles.footersmall} ${styles.dMdNone}`}>

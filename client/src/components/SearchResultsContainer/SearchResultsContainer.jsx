@@ -76,17 +76,14 @@ const SearchResultsContainer = ({ searchTerm }) => {
   });
 
   const productList = useMemo(() => {
-    return products.map(product => ({
-      ...product,
-      isCarouselItem: false
-    })).map(product => (
+    return (
       <ProductDisplay 
-        key={product.id} 
-        products={[product]}
+        products={products} 
+        isCarouselItem={false}
       />
-    ));
+    );
   }, [products]);
-
+  
   return (
     <div className={styles.resultsContainer}>
       <h2 className={styles.title}>Sökresultat för "{searchTerm}"</h2>

@@ -12,6 +12,11 @@
     font-family: cursive;
   }
 
+  .heroText {
+    font-family: 'Licorice';
+    color: rgb(93, 7, 72);
+  }
+
   @media (min-width: 1024px) {
     
     .hero {

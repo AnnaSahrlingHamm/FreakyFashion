@@ -1,0 +1,25 @@
+.similarProductsHeading {
+    font-family: 'Smooch', cursive; /* eller den font du använder */
+    font-size: 2rem;
+    text-align: center;
+    margin: 3rem 0 2rem;
+    color: #222;
+    position: relative;
+  }
+  
+  .similarProductsHeading::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: orange;
+    margin: 8px auto 0;
+    border-radius: 2px;
+  }
+  
+  .product-details-container {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  

@@ -9,6 +9,18 @@
     display: none;
   }
 
+  h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .customLink {
+    color: black;
+    text-decoration: underline;
+    text-decoration-color: black;
+  }
+
+
   @media (min-width: 640px) {
     .toppnav ul {
         display: flex;

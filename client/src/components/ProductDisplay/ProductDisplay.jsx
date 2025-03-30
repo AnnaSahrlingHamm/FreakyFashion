@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { productImages } from '../../assets/index.js';
 
 const ProductDisplay = ({ products = [], isCarouselItem = false }) => {
-  // Förbättrad felhantering
+ 
   if (!products || !Array.isArray(products)) {
     console.error("Invalid products prop:", products);
     return <div className={styles.empty}>Ogiltig produktdata</div>;
@@ -19,17 +19,17 @@ const ProductDisplay = ({ products = [], isCarouselItem = false }) => {
   return (
     <section className={styles.imageContainer}>
       {products.map((product) => {
-        // Förbättrad produktvalidering
+        
         if (!product || typeof product !== 'object') {
           console.warn("Invalid product item:", product);
           return null;
         }
 
-        // Säker bildhantering
+        
         const imageBase = product.image?.replace('.webp', '') || '';
         const imagePath = productImages[imageBase] || '/placeholder.webp';
 
-        // Fallback-värden för obligatoriska fält
+       
         const productId = product.id || Math.random().toString(36).substr(2, 9);
         const productSlug = product.slug || 'saknas';
         const productName = product.item || 'Namn saknas';
@@ -51,16 +51,17 @@ const ProductDisplay = ({ products = [], isCarouselItem = false }) => {
                   />
                 </Link>
                 
-                {!isCarouselItem && (
-                  <>
+                <>
+                  {!isCarouselItem && (
                     <button className={styles.heartIcon}>
                       <FaHeart />
                     </button>
-                    {product.isNew && (
-                      <div className={styles.badge}>Nyhet!</div>
-                    )}
-                  </>
-                )}
+                  )}
+                  {product.isNew && (
+                    <div className={styles.badge}>Nyhet!</div>
+                  )}
+                </>
+
                 
                 <figcaption className={styles.productTitle}>
                   {productName} - {productPrice} SEK

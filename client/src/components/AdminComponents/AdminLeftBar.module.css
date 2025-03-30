@@ -1,0 +1,12 @@
+.adminLeftBar {
+    background-color: #e0e0e0;
+    width: 200px;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .adminLeftBar h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  

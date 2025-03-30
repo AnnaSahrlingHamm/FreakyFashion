@@ -82,6 +82,6 @@ const ProductCard = ({ product }) => {
       </div>
     </div>
   );
-};
+};11
 
 export default ProductCard;

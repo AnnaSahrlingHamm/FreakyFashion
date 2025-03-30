@@ -1,9 +1,9 @@
-/* Dölj karusellen på mobil som standard */
+
 .carouselContainer {
   display: none; 
 }
 
-/* Visa karusellen från 640px och uppåt */
+
 @media (min-width: 640px) {
   .carouselContainer {
     display: block;
@@ -16,8 +16,8 @@
   
   .carousel {
     display: flex;
-    gap: 1rem;
-    padding: 1rem;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
     padding-bottom: 20px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -32,46 +32,69 @@
   .carouselItem {
     flex: 0 0 auto;
     scroll-snap-align: start;
-    width: 80%;
-    cursor: pointer;
-    transition: transform 0.3s ease;
     border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 15px;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0.5rem;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+    width: fit-content;
+    max-width: 100%;
+    height: auto; 
   }
+
   
   .carouselItem:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
+
+
+  
+  
 
   .navButton {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     border: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
     cursor: pointer;
     z-index: 10;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease, transform 0.2s ease;
   }
-
-  .navButton:first-child {
-    left: -20px;
+  
+  .navButton:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-50%) scale(1.1);
   }
-
-  .navButton:last-child {
-    right: -20px;
+  
+  .navButton:first-of-type {
+    left: 0;
   }
-}
+  
+  .navButton:last-of-type {
+    right: 0;
+  }
+  
 
-/* Anpassning för större skärmar */
+  @media (min-width: 700px) {
+    .carouselItem {
+      flex: 0 0 40%;
+    }
+  }
+  
+
 @media (min-width: 1024px) {
   .carouselItem {
-    width: 280px; /* Lite större kort på desktop */
+    width: calc(33.33% - 2rem);
   }
-}
+}}

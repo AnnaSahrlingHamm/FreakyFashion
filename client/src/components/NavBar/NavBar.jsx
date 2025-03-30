@@ -8,21 +8,21 @@ const NavBar = () => {
       {/* Navbar för mobil */}
       <nav className={styles.toppnav}>
         <ul>
-          <li><Link to="/admin-index">Nyheter</Link></li>
-          <li><Link to="/admin-index">Topplistan</Link></li>
-          <li><Link to="/admin-index">Rea</Link></li>
-          <li><Link to="/new">Kampanjer</Link></li>
+          <li><Link className={styles.customLink} to="/admin-index"><h2>Nyheter</h2></Link></li>
+          <li><Link className={styles.customLink}to="/admin-index"><h2>Topplistan</h2></Link></li>
+          <li><Link className={styles.customLink}to="/admin-index"><h2>Rea</h2></Link></li>
+          <li><Link className={styles.customLink} to="/new"><h2>Kampanjer</h2></Link></li>
         </ul>
       </nav>
 
       {/* Navbar för större skärmar */}
       <nav className={styles.toppnavLarge}>
         <ul>
-          <li><Link to="/admin-index">Nyheter</Link></li>
-          <li><Link to="/admin-index">Kategorier</Link></li>
-          <li><Link to="/new">Topplistan</Link></li>
-          <li><Link to="/admin-index">Rea</Link></li>
-          <li><Link to="/admin-index">Kampanjer</Link></li>
+        <li><Link className={styles.customLink} to="/admin-index"><h2>Nyheter</h2></Link></li>
+        <li><Link className={styles.customLink} to="/admin-index"><h2>Kategorier</h2></Link></li>
+        <li><Link className={styles.customLink} to="/new"><h2>Topplistan</h2></Link></li>
+        <li><Link className={styles.customLink} to="/admin-index"><h2>Rea</h2></Link></li>
+        <li><Link className={styles.customLink} to="/admin-index"><h2>Kampanjer</h2></Link></li>
         </ul>
       </nav>
     </>

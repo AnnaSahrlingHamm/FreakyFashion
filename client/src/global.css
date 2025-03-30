@@ -63,6 +63,53 @@ body {
 	margin: 0;
 	padding: 0;
   }
+
+h1, h2 {
+	font-family: 'WindSong';
+} 
+
+/* src/styles/fonts.css */
+@font-face {
+    font-family: 'Babylonica';
+    src: url('./fonts/Babylonica/Babylonica-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Comforter Brush';
+    src: url('./fonts/Comforter_Brush/ComforterBrush-Regular.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Licorice';
+    src: url('./fonts/Licorice/Licorice-Regular.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+  }
+
+@font-face {
+    font-family: 'Smooch';
+    src: url('./fonts/Smooch/Smooch-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'WindSong';
+    src: url('./fonts/WindSong/WindSong-Medium.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'WindSong';
+    src: url('./fonts/WindSong/WindSong-Regular.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+  }
   
   /* Wrapper för att centrera och styra sidbredd */
   .container {

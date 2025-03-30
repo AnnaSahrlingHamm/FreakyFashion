@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import styles from '../../components/AdminComponents/AdminLayout.module.css';
+import AdminHeader from '../../components/AdminComponents/AdminHeader';
+import AdminLeftBar from '../../components/AdminComponents/AdminLeftBar';
 import ProductTable from '../../components/AdminComponents/ProductTable';
 
 const AllProducts = () => {
@@ -61,7 +64,12 @@ const AllProducts = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
+      <div className={styles.adminLayout}>
+      <AdminHeader />
+      <div className={styles.adminContainer}>
+        <AdminLeftBar />
+    <div className = {styles.adminContent}>
       <h1>Alla produkter</h1>
       {isLoading && <p>Laddar...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -70,6 +78,9 @@ const AllProducts = () => {
         onDeleteProduct={handleDeleteProduct}
         isLoading={isLoading}
       />
+    </div>
+    </div>
+    </div>
     </div>
   );
 };

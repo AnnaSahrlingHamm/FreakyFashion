@@ -6,6 +6,8 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import ProductCarousel from "../../components/ProductCarousel/ProductCarousel";
 import IconLinks from "../../components/IconLinks/IconLinks";
 import Footer from "../../components/Footer/Footer";
+import styles from './ProductDetails.module.css';
+
 
 const ProductDetails = () => {
     const { slug } = useParams();
@@ -45,7 +47,8 @@ const ProductDetails = () => {
             <div className="product-details-container">
             <ProductCard product={product} />
 
-            <h2 id="liknandeProdukter">Liknande produkter</h2>
+            <h2 className={styles.similarProductsHeading}>Liknande produkter</h2>
+
             {similarProducts.length > 0 ? (
                 <ProductCarousel products={similarProducts} />
             ) : (
