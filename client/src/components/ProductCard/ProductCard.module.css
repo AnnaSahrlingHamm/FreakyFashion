@@ -82,8 +82,8 @@
   }
   
   /* Knapp */
-  .cartButton {
-    background-color: black;
+  .addToCartButton {
+    background-color: gray;
     color: white;
     border: none;
     padding: 10px;
@@ -92,7 +92,7 @@
     cursor: pointer;
   }
   
-  .cartButton:hover {
+  .addToCartButton:hover {
     background-color: darkgray;
   }
   

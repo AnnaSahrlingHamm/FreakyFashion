@@ -57,6 +57,31 @@ app.get("/api/products/featured", (req, res) => {
   res.json(products);
 });
 
+// DELETE endpoint för att ta bort en produkt
+app.delete("/api/products/:id", (req, res) => {
+  const { id } = req.params;
+  
+  try {
+    // Kontrollera om produkten finns
+    const product = db.prepare("SELECT * FROM products WHERE id = ?").get(id);
+    if (!product) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    // Ta bort produkten
+    const stmt = db.prepare("DELETE FROM products WHERE id = ?");
+    const result = stmt.run(id);
+    
+    if (result.changes > 0) {
+      res.json({ success: true, message: "Product deleted successfully" });
+    } else {
+      res.status(500).json({ error: "Failed to delete product" });
+    }
+  } catch (error) {
+    console.error("Database error:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
 // 2. Hämta en enskild produkt via slug
 app.get("/api/products/:slug", (req, res) => {

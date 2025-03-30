@@ -1,7 +1,7 @@
 import React from "react";
+import { CheckoutTableWrapper } from "../../components/CheckoutComponents/CheckoutTableWrapper";
 import Header from "../../components/Header/Header";
 import NavBar from "../../components/NavBar/NavBar";
-import CheckoutTable from "../../components/CheckoutComponents/CheckoutTable";
 import CustomerForm from "../../components/CheckoutComponents/CustomerForm";
 import IconLinks from "../../components/IconLinks/IconLinks";
 import Footer from "../../components/Footer/Footer";
@@ -14,7 +14,7 @@ const Checkout = () => {
         <div className="checkout-page">
           <h1>Checkout</h1>
           <div className="checkout-content">
-            <CheckoutTable />
+            <CheckoutTableWrapper showCheckoutButton={true} />
             <CustomerForm />
           </div>
         </div>

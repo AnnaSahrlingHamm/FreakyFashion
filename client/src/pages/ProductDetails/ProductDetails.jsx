@@ -16,8 +16,8 @@ const ProductDetails = () => {
         const fetchData = async () => {
           try {
             const [productRes, similarRes] = await Promise.all([
-              fetch(`/api/products/${slug}`),
-              fetch(`/api/products/${slug}/similar`)
+              fetch(`http://localhost:8000/api/products/${slug}`),
+              fetch(`http://localhost:8000/api/products/${slug}/similar`)
             ]);
 
             console.log("Produktresponse status:", productRes.status);

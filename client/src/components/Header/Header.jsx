@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import logo from '../../assets/images/nonProductImgs/FREAKYFASHIONlogo.png';
 import { BsFillBasket2Fill } from "react-icons/bs";
@@ -21,7 +21,13 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logocontainer}>
+      <Link 
+            to="/" 
+            className={styles.icon}
+            aria-label="Gå till startsidan"
+          >
         <img src={logo} alt="Välkommen till Freaky Fashion!" />
+        </Link>
       </div>
       <div className={styles.formcontainer}>
         <form onSubmit={handleSubmit} action="#" method="GET">
@@ -41,9 +47,13 @@ const Header = () => {
           <a href="#" onClick={(e) => e.preventDefault()} className={styles.icon}>
             <FaHeart />
           </a>
-          <a href="#" onClick={(e) => e.preventDefault()} className={styles.icon}>
+          <Link 
+            to="/basket" 
+            className={styles.icon}
+            aria-label="Gå till kassan"
+          >
             <BsFillBasket2Fill />
-          </a>
+          </Link>
         </div>
       </div>
     </header>

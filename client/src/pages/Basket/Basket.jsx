@@ -1,18 +1,24 @@
-import React, {useState, useEffect} from "react";
-import CheckoutTable from "../../components/CheckoutComponents/CheckoutTable";
+import React, {useState, useEffect, memo} from "react";
+import { CheckoutTableWrapper } from "../../components/CheckoutComponents/CheckoutTableWrapper";
+import Header from "../../components/Header/Header";
+import NavBar from "../../components/NavBar/NavBar";
+import IconLinks from "../../components/IconLinks/IconLinks";
+import Footer from "../../components/Footer/Footer";
 
-const Basket = () => {
+
+const Basket = memo(() => {
+    console.log("Basket-sidan RENDERAS");
     return (
+        <div className="container">
+        <Header />
+        <NavBar />
         <div>
-            <h1>Varukorg</h1>
-            <CheckoutTable />
+          <CheckoutTableWrapper showCheckoutButton={true} />
+        </div>
+        <IconLinks />
+        <Footer /> 
         </div>
     );
-};
+});
 
 export default Basket;
-
-//TODO: 
-// 1. Skapa Basket.jsx
-// 2. Testa slug- funktionerna
-// 3. Skapa checkout-sidan med funktioner.

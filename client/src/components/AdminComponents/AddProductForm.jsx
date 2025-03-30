@@ -3,14 +3,15 @@ import styles from "./AddProductForm.module.css";
 
 function AddProductForm() {
   const [formData, setFormData] = useState({
-    item: "",         
-    description: "",  
-    image: "",        
-    brand: "",        
-    sku: "",          
-    price: ""         
+    item: "",
+    description: "",
+    image: "",
+    brand: "",
+    sku: "",
+    price: "",
+    publish_date: "" // Nytt fält för publiceringsdatum
   });
-  
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -22,8 +23,16 @@ function AddProductForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const product = { ...formData }; // Använd ett objekt, inte en array
-
+  
+    // Konvertera datumformat från yyyy-mm-dd till dd-mm-yyyy
+    const [year, month, day] = formData.publish_date.split("-");
+    const formattedDate = `${day}-${month}-${year}`;
+  
+    const product = { 
+      ...formData, 
+      publish_date: formattedDate // Uppdaterat datumformat
+    };
+  
     fetch("/api/products", {
       method: "POST",
       headers: {
@@ -111,6 +120,19 @@ function AddProductForm() {
               value={formData.price}
               onChange={handleInputChange}
             />
+
+              <h3>Publiceringsdatum</h3>
+              <div className={styles.dateContainer}>
+                <input
+                  type="date"
+                  name="publish_date"
+                  value={formData.publish_date}
+                  onChange={handleInputChange}
+                  required
+                />
+              <span className={styles.calendarIcon}>📅</span> {/* Kalenderikon */}
+              </div>
+
 
             <br />
             <br />

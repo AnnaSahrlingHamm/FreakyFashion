@@ -1,7 +1,7 @@
 import React from 'react';
 // import './App.css';
 import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { CartProvider } from "./CartContext"; // Importera CartProvider
+import { CartProvider, CartContext } from "./CartContext"; // Importera CartProvider
 import Index from './pages/Index/Index';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import AddProduct from './pages/Admin/AddProduct';

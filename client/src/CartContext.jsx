@@ -1,45 +1,81 @@
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect, createContext, useMemo, useCallback } from "react";
 
-// Skapa en Context för varukorgen
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [hasMounted, setHasMounted] = useState(false);
 
-  // Funktion för att lägga till en produkt i varukorgen
-  const addToCart = (product) => {
-    const existingItem = cartItems.find((item) => item.id === product.id);
+  console.log("cartItems initialt:", cartItems);
 
-    if (existingItem) {
-      // Om produkten redan finns, öka antalet
-      const updatedCart = cartItems.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-      );
-      setCartItems(updatedCart);
-    } else {
-      // Om produkten inte finns, lägg till den med antal 1
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
-  };
+  // Memoized funktioner
+  const addToCart = useCallback((product) => {
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(item => item.id === product.id);
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: (item.quantity || 0) + 1 }
+            : item
+        );
+      }
+      return [
+        ...prevItems,
+        { 
+          ...product,
+          quantity: 1,
+          name: product.name || product.item || 'Namn saknas',
+          price: product.price || 0
+        }
+      ];
+    });
+  }, []);
 
-  // Funktion för att uppdatera antal av en produkt i varukorgen
-  const updateQuantity = (id, quantity) => {
-    const updatedCart = cartItems.map((item) =>
-      item.id === id ? { ...item, quantity: Number(quantity) } : item
+  const updateQuantity = useCallback((id, quantity) => {
+    setCartItems(prevItems => 
+      prevItems.map(item =>
+        item.id === id ? { ...item, quantity: Number(quantity) } : item
+      )
     );
-    setCartItems(updatedCart);
-  };
+  }, []);
 
-  // Funktion för att ta bort en produkt från varukorgen
-  const removeItem = (id) => {
-    const updatedCart = cartItems.filter((item) => item.id !== id);
-    setCartItems(updatedCart);
-  };
+  const removeItem = useCallback((id) => {
+    setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+  }, []);
+
+  const contextValue = useMemo(() => ({
+    cartItems,
+    addToCart,
+    updateQuantity,
+    removeItem,
+  }), [cartItems, addToCart, updateQuantity, removeItem]);
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cartItems');
+    if (savedCart) {
+      try {
+        const parsed = JSON.parse(savedCart);
+        if (Array.isArray(parsed) && !cartItems.length) {
+          setCartItems(parsed);
+        }
+      } catch (error) {
+        console.error("Fel vid inläsning av varukorg:", error);
+      }
+    }
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (hasMounted) {
+      const timer = setTimeout(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [cartItems, hasMounted]);
 
   return (
-    <CartContext.Provider
-      value={{ cartItems, addToCart, updateQuantity, removeItem }}
-    >
+    <CartContext.Provider value={contextValue}>
       {children}
     </CartContext.Provider>
   );

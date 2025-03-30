@@ -7,4 +7,15 @@
     top: 10px;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 2);
   }
+
+  .dateContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .calendarIcon {
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
   

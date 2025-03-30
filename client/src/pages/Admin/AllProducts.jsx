@@ -3,31 +3,59 @@ import ProductTable from '../../components/AdminComponents/ProductTable';
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Hämta produkter från ett API eller en databas
+  const handleDeleteProduct = async (productId) => {
+    if (!window.confirm('Är du säker på att du vill ta bort denna produkt?')) {
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/products/${productId}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP-fel! Status: ${response.status}`);
+      }
+
+      // Ta bort produkten från state om borttagningen lyckades
+      setProducts(prevProducts => prevProducts.filter(p => p.id !== productId));
+    } catch (error) {
+      console.error('Fel vid borttagning av produkt:', error);
+      setError('Kunde inte ta bort produkten. Försök igen.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    // Exempel på att hämta produkter från ett API
     const fetchProducts = async () => {
-        try {
-          const response = await fetch('http://localhost:8000/api/products');
-          if (!response.ok) {
-            throw new Error(`HTTP-fel! Status: ${response.status}`);
-          }
-          const data = await response.json();
-      
-          // Säkerställ att datan är en array innan den sätts i state
-          if (Array.isArray(data)) {
-            setProducts(data);
-          } else {
-            console.error("API returnerade ingen array:", data);
-            setProducts([]); // Undvik att state blir undefined
-          }
-        } catch (error) {
-          console.error('Fel vid hämtning av produkter:', error);
-          setProducts([]); // Sätt en tom array så att komponenten inte kraschar
+      setIsLoading(true);
+      try {
+        const response = await fetch('http://localhost:8000/api/products');
+        if (!response.ok) {
+          throw new Error(`HTTP-fel! Status: ${response.status}`);
         }
-      };
-      
+        const data = await response.json();
+        
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          console.error("API returnerade ingen array:", data);
+          setProducts([]);
+        }
+      } catch (error) {
+        console.error('Fel vid hämtning av produkter:', error);
+        setError('Kunde inte hämta produkter. Försök igen.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
     fetchProducts();
   }, []);
@@ -35,7 +63,13 @@ const AllProducts = () => {
   return (
     <div>
       <h1>Alla produkter</h1>
-      <ProductTable products={products} />
+      {isLoading && <p>Laddar...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <ProductTable 
+        products={products} 
+        onDeleteProduct={handleDeleteProduct}
+        isLoading={isLoading}
+      />
     </div>
   );
 };

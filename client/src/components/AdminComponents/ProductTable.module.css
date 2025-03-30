@@ -48,3 +48,22 @@
     font-style: italic; /* Kursiv text */
     color: #888; /* Grå färg för texten */
   }
+
+  .deleteButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ff4444;
+    padding: 5px;
+    font-size: 16px;
+    transition: color 0.2s;
+  }
+  
+  .deleteButton:hover:not(:disabled) {
+    color: #cc0000;
+  }
+  
+  .deleteButton:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }

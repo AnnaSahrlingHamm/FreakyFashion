@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './CustomerForm.module.css';
 
 const CustomerForm = () => {
   const [formData, setFormData] = useState({
@@ -8,109 +9,108 @@ const CustomerForm = () => {
     address: '',
     postal_code: '',
     city: '',
-    phone_number: '',
+    newsletter: false,
   });
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     console.log('Formulär skickat:', formData);
-  
-    try {
-      const response = await fetch('http://localhost:8000/api/customers', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Något gick fel vid skickande av formuläret');
-      }
-  
-      const result = await response.json();
-      console.log('Svar från servern:', result);
-    } catch (error) {
-      console.error('Fel:', error);
-    }
   };
 
   return (
-    <form className="customer-form" onSubmit={handleSubmit}>
-      <h3>Förnamn</h3>
-      <input
-        type="text"
-        name="first_name"
-        placeholder="Ange förnamn"
-        value={formData.first_name}
-        onChange={handleInputChange}
-      />
+    <form className={styles.customerForm} onSubmit={handleSubmit}>
+      <div className={styles.upperSection}>
+        <div className={styles.inputGroup}>
+          <label>Förnamn</label>
+          <input
+            type="text"
+            name="first_name"
+            placeholder="Ange förnamn"
+            value={formData.first_name}
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
 
-      <h3>Efternamn</h3>
-      <input
-        type="text"
-        name="last_name"
-        placeholder="Ange efternamn"
-        value={formData.last_name}
-        onChange={handleInputChange}
-      />
+        <div className={styles.inputGroup}>
+          <label>Efternamn</label>
+          <input
+            type="text"
+            name="last_name"
+            placeholder="Ange efternamn"
+            value={formData.last_name}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className={styles.inputGroup}>
 
-      <h3>E-post</h3>
-      <input
-        type="text"
-        name="email"
-        placeholder="Ange e-post"
-        value={formData.email}
-        onChange={handleInputChange}
-      />
+        <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
+          <label>E-post</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Ange e-post"
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
 
-      <h3>Adress</h3>
-      <input
-        type="text"
-        name="address"
-        placeholder="Ange adress"
-        value={formData.address}
-        onChange={handleInputChange}
-      />
+      <fieldset className={styles.addressSection}>
+        <legend>Adress</legend>
+        <div className={styles.inputGroup}>
+          <label>Gata</label>
+          <input
+            type="text"
+            name="address"
+            placeholder="Ange gata"
+            value={formData.address}
+            onChange={handleInputChange}
+          />
+        </div>
 
-      <h3>Postnummer</h3>
-      <input
-        type="text"
-        name="postal_code"
-        placeholder="Ange postnummer"
-        value={formData.postal_code}
-        onChange={handleInputChange}
-      />
+        <div className={styles.inputGroup}>
+          <label>Postnummer</label>
+          <input
+            type="text"
+            name="postal_code"
+            placeholder="Ange postnummer"
+            value={formData.postalCode}
+            onChange={handleInputChange}
+          />
+        </div>
 
-      <h3>Stad</h3>
-      <input
-        type="text"
-        name="city"
-        placeholder="Ange stad"
-        value={formData.city}
-        onChange={handleInputChange}
-      />
+        <div className={styles.inputGroup}>
+          <label>Stad</label>
+          <input
+            type="text"
+            name="city"
+            placeholder="Ange stad"
+            value={formData.city}
+            onChange={handleInputChange}
+          />
+        </div>
+      </fieldset>
 
-      <h3>Telefonnummer</h3>
-      <input
-        type="text"
-        name="phone_number"
-        placeholder="Ange telefonnummer"
-        value={formData.phone_number}
-        onChange={handleInputChange}
-      />
+      <div className={styles.newsletterContainer}>
+        <input
+          type="checkbox"
+          name="newsletter"
+          checked={formData.newsletter}
+          onChange={handleInputChange}
+        />
+        <label>Jag vill ta emot nyhetsbrev</label>
+      </div>
 
-      <br />
-      <br />
-      <button type="submit">Skicka</button>
+      <button type="submit" className={styles.buyButton}>Köp</button>
     </form>
   );
 };

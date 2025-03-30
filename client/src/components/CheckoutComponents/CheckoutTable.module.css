@@ -1,29 +1,31 @@
-/* Container för varukorgen */
+/* I din modul-CSS */
+.standard-table {
+  display: table; /* Tvinga tabell-layout */
+}
+
 .cartContainer {
-    width: 100%; /* Tar upp hela bredden av förälderelementet */
+    width: 80%; /* Tar upp hela bredden av förälderelementet */
     max-width: 800px; /* Begränsar bredden till max 800px för bättre läsbarhet */
     margin: auto; /* Centrerar containern horisontellt */
     text-align: center; /* Centrerar texten i containern */
   }
   
-  /* Stil för tabellen */
   .cartTable {
-    width: 100%; /* Tabellen tar upp hela bredden av containern */
-    border-collapse: collapse; /* Tar bort mellanrum mellan cellernas kanter */
-    margin-top: 10px; /* Lägger till lite mellanrum ovanför tabellen */
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 10px; 
   }
-  
-  /* Stilar för både tabellhuvud (th) och celler (td) */
+
   .cartTable th,
   .cartTable td {
-    border: 1px solid #ddd; /* Lägger till en ljusgrå kant runt cellerna */
-    padding: 10px; /* Lägger till utrymme inuti cellerna */
-    text-align: center; /* Centrerar texten inuti cellerna */
+    border: 1px solid #ddd; 
+    padding: 10px;
+    text-align: left; 
   }
   
-  /* Bakgrundsfärg för tabellhuvudet */
+  
   .cartTable th {
-    background-color: #f4f4f4; /* Ljusgrå bakgrund för att separera rubriker från innehåll */
+    background-color: palevioletred; 
   }
   
   /* Stil för dropdown-menyn där man väljer antal */
@@ -54,25 +56,20 @@
   
   /* Media query för större skärmar (minimumbredd 640px) */
   @media (min-width: 640px) {
-    .cartTable {
-      display: block; /* Gör tabellen till ett blockelement */
-      overflow-x: auto; /* Möjliggör horisontell scrollning om tabellen är för bred */
-    }
   
     .cartTable thead {
       display: none; /* Döljer tabellhuvudet för en mer kompakt layout */
     }
   
     .cartTable tr {
-      display: flex; /* Gör raderna flexibla */
-      flex-direction: column; /* Staplar cellerna vertikalt istället för horisontellt */
+      display: grid;
       margin-bottom: 15px; /* Lägger till mellanrum mellan raderna */
       border: 1px solid #ddd; /* Lägger till en kant runt varje rad */
     }
   
     .cartTable td {
       text-align: left; /* Justerar texten till vänster för bättre läsbarhet */
-      display: flex; /* Gör varje cell till ett flexelement */
+      display: grid; /* Gör varje cell till ett flexelement */
       justify-content: space-between; /* Sprider ut innehållet i cellen */
       padding: 10px; /* Lägger till lite utrymme inuti cellen */
     }
