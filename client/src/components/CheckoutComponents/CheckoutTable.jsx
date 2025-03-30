@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { CartContext } from '../../CartContext';
 import styles from './CheckoutTable2.module.css';
 import { FaTrash } from 'react-icons/fa';
+import { useLocation } from 'react-router-dom';
+
 
 const CheckoutTable = () => {
   const { cartItems, updateQuantity, removeItem } = useContext(CartContext);
@@ -14,6 +16,9 @@ const CheckoutTable = () => {
     return name;
   };
 
+  const location = useLocation();
+  const isBasketPage = location.pathname === "/basket";
+
   const validCartItems = Array.isArray(cartItems)
     ? cartItems.filter(item =>
         item &&
@@ -24,7 +29,7 @@ const CheckoutTable = () => {
 
   return (
     <div className={styles.cartContainer}>
-      <h1>Varukorgen</h1>
+      <h1>{isBasketPage ? "Varukorgen" : "Checkout"}</h1>
       {validCartItems.length > 0 ? (
         <table className={styles.table}>
           <thead className={styles.row}>

@@ -10,10 +10,10 @@ const AddProduct = () => {
   return (
     <div className="container">
       <div className={styles.adminLayout}>
-      <AdminHeader>Administration</AdminHeader>
+      <AdminHeader>Administration</AdminHeader> 
         <div className={styles.adminContainer}>
       <AdminLeftBar>Products</AdminLeftBar>
-      <div className = {styles.adminContent}>Ny Produkt
+      <div className = {styles.adminContent}>
         <AddProductForm />
       </div>
       </div>

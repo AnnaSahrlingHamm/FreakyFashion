@@ -5,7 +5,7 @@ const AdminLeftBar = () => {
   return (
     <aside className={styles.adminLeftBar}>
       <nav>
-        <h3>Products</h3>
+        <h3 className={styles.sidebarTitle}>Products</h3>
       </nav>
     </aside>
   );

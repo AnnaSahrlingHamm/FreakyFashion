@@ -67,3 +67,48 @@
     color: #ccc;
     cursor: not-allowed;
   }
+
+  .tableWrapper {
+    width: 100%;
+  }
+  
+  .topButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .refreshBtn,
+  .newBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .refreshBtn {
+    background-color: #eef6ff;
+    color: #004080;
+  }
+  
+  .refreshBtn:hover {
+    background-color: #d5ebff;
+    border-color: #99cfff;
+  }
+  
+  .newBtn {
+    background-color: #fff3e0;
+    color: #914a00;
+  }
+  
+  .newBtn:hover {
+    background-color: #ffd199;
+    border-color: #ffb347;
+  }
+  

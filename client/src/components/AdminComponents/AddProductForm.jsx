@@ -9,7 +9,7 @@ function AddProductForm() {
     brand: "",
     sku: "",
     price: "",
-    publish_date: "" // Nytt fält för publiceringsdatum
+    published: "" // Nytt fält för publiceringsdatum
   });
 
 
@@ -22,18 +22,21 @@ function AddProductForm() {
   };
 
   const handleSubmit = (event) => {
+
+    console.log("Skickar produkt:", product);
+
     event.preventDefault();
   
     // Konvertera datumformat från yyyy-mm-dd till dd-mm-yyyy
-    const [year, month, day] = formData.publish_date.split("-");
+    const [year, month, day] = formData.published.split("-");
     const formattedDate = `${day}-${month}-${year}`;
   
     const product = { 
       ...formData, 
-      publish_date: formattedDate // Uppdaterat datumformat
+      published: formattedDate // Uppdaterat datumformat
     };
   
-    fetch("/api/products", {
+    fetch("http://localhost:8000/api/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,11 +54,9 @@ function AddProductForm() {
   return (
     <section className={styles.storAdminContainer}>
       <header id={styles.adminheader}>
-        <h3>Administration</h3>
       </header>
       <div className={styles.adminindexcontainer}>
         <nav>
-          <h3>Produkter</h3>
         </nav>
         <article className={styles.newProductMain}>
           <h1 id={styles.newProductTitle}>Ny produkt</h1>
@@ -125,12 +126,12 @@ function AddProductForm() {
               <div className={styles.dateContainer}>
                 <input
                   type="date"
-                  name="publish_date"
-                  value={formData.publish_date}
+                  name="published"
+                  value={formData.published}
                   onChange={handleInputChange}
                   required
                 />
-              <span className={styles.calendarIcon}>📅</span> {/* Kalenderikon */}
+              <span className={styles.calendarIcon}>📅</span> 
               </div>
 
 

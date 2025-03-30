@@ -6,6 +6,17 @@ import PropTypes from 'prop-types';
 import { productImages } from '../../assets/index.js';
 
 const ProductDisplay = ({ products = [], isCarouselItem = false }) => {
+
+  const isNewProduct = (product) => {
+    if (!product.created_at) return false;
+    const createdDate = new Date(product.created_at);
+    const now = new Date();
+    const diffTime = Math.abs(now - createdDate);
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+    return diffDays <= 7;
+  };
+  
+  
  
   if (!products || !Array.isArray(products)) {
     console.error("Invalid products prop:", products);
@@ -57,9 +68,11 @@ const ProductDisplay = ({ products = [], isCarouselItem = false }) => {
                       <FaHeart />
                     </button>
                   )}
-                  {product.isNew && (
-                    <div className={styles.badge}>Nyhet!</div>
-                  )}
+                 {isNewProduct(product) && (
+                  <div className={styles.badge}>Nyhet!</div>
+                )}
+
+
                 </>
 
                 

@@ -1,74 +1,109 @@
 .customerForm {
-    display:flex;
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-  
-  .inputGroup {
-    margin-bottom: 10px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .addressSection {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 15px;
-  }
-  
-  legend {
-    font-weight: bold;
-  }
-  
-  .newsletterContainer {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-top: 10px;
-  }
-  
-  .buyButton {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 15px;
-    cursor: pointer;
-  }
-  
-  .buyButton:hover {
-    background-color: #218838;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  gap: 10px;
+}
+
+.inputGroup {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.addressSection {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 5px;
+}
+
+.newsletterContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  margin-top: 20px;
+}
+
+.newsletterContainer input[type="checkbox"] {
+  margin: 0;
+}
+
+.newsletterContainer label {
+  margin: 0;
+  text-align: left;
+  font-weight: normal;
+  white-space: nowrap;
+}
+
+.checkboxLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: normal;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  margin: 0;
+}
+
+.buyButton {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: grey;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.buyButton:hover {
+  background-color: orange;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 640px) {
+  .upperSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
 
-  @media (min-width: 640px) {
-    .upperSection {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-  
-    .fullWidth {
-      grid-column: span 2;
-    }
+  .fullWidth {
+    grid-column: span 2;
   }
-  
-  
+}

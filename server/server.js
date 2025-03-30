@@ -126,17 +126,23 @@ app.get("/api/products/:slug/similar", (req, res) => {
 
 // Övriga routes (POST, PUT, DELETE)
 app.post("/api/products", async (req, res) => {
-  const { image, item, brand, description, price, sku } = req.body;
+  const { image, item, brand, description, price, sku, published } = req.body;
   const slug = generateSlug(item);
-  
-  const stmt = db.prepare(`
-    INSERT INTO products (image, item, brand, description, price, sku, slug)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-  `);
-  
-  const result = stmt.run(image, item, brand, description, price, sku, slug);
-  res.json({ id: result.lastInsertRowid, ...req.body, slug });
+
+  try {
+    const stmt = db.prepare(`
+      INSERT INTO products (image, item, brand, description, price, sku, slug, Published)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    const result = stmt.run(image, item, brand, description, price, sku, slug, published);
+    res.json({ id: result.lastInsertRowid, ...req.body, slug });
+  } catch (err) {
+    console.error("Error inserting product:", err);
+    res.status(500).json({ error: "Failed to insert product" });
+  }
 });
+
 
 // Starta servern
 const PORT = process.env.PORT || 8000;

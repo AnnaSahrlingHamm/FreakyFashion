@@ -54,6 +54,9 @@ const ProductCard = ({ product }) => {
       />
       <div className={styles.productInfo}>
         <h3>{product.item}</h3>
+        {product.description && (
+        <p className={styles.description}>{product.description}</p>
+        )}
         <p className={styles.brand}>{product.brand}</p>
         <p className={styles.price}>{product.price} kr</p>
         <button 

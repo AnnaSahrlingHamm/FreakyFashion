@@ -78,6 +78,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: left;
+    gap: 20px;
   }
   
   .productInfo h3 {
@@ -98,7 +99,13 @@
     margin: 0.5rem 0;
     color: #111;
   }
-  
+
+  .description {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.4;
+  }
   
   .brand {
     font-size: 0.9em;

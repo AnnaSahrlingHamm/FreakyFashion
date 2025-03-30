@@ -101,14 +101,19 @@ const CustomerForm = () => {
       </fieldset>
 
       <div className={styles.newsletterContainer}>
-        <input
-          type="checkbox"
-          name="newsletter"
-          checked={formData.newsletter}
-          onChange={handleInputChange}
-        />
-        <label>Jag vill ta emot nyhetsbrev</label>
+        <label className={styles.checkboxLabel}>
+          <input
+            type="checkbox"
+            name="newsletter"
+            checked={formData.newsletter}
+            onChange={handleInputChange}
+          />
+          Jag vill ta emot nyhetsbrev
+        </label>
       </div>
+
+
+
 
       <button type="submit" className={styles.buyButton}>Köp</button>
     </form>
