@@ -1,7 +1,7 @@
 //import hero from "../../assets/images/nonProductImgs/hero.jpg";
 import hero500w from "../../assets/images/nonProductImgs/hero500w.jpg";
 import hero_large from "../../assets/images/nonProductImgs/hero_large.jpg";
-import styles from "./Hero.module.css"; // Importera CSS-modulen
+import styles from "./Hero.module.css"; 
 
 const Hero = () => {
   return (

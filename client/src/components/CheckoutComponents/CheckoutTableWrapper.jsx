@@ -17,7 +17,7 @@ export const CheckoutTableWrapper = memo(({ showCheckoutButton }) => {
   );
 }, arePropsEqual);
 
-// Anpassad jämförelsefunktion för memo
+
 function arePropsEqual(prevProps, nextProps) {
   return prevProps.showCheckoutButton === nextProps.showCheckoutButton;
 }

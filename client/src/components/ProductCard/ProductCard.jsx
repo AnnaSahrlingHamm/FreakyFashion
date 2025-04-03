@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import styles from "./ProductCard.module.css";
 import { productImages } from "../../assets/index";
-import { CartContext } from "../../CartContext"; // Importera CartContext
+import { CartContext } from "../../CartContext"; 
 
 const ProductCard = ({ product }) => {
-  const { addToCart } = useContext(CartContext); // Hämta funktionen för att lägga till i varukorgen
+  const { addToCart } = useContext(CartContext); 
 
   if (!product || !product.image) {
     return <div className={styles.productCard}>Felaktig produktdata</div>;
@@ -69,11 +69,11 @@ const ProductCard = ({ product }) => {
             
             const cartItem = {
               id: product.id,
-              item: product.item,  // Behåll samma fältnamn som din CheckoutTable förväntar sig
-              name: product.item,  // Dubbla upp för säkerhets skull
+              item: product.item,  
+              name: product.item,  
               price: typeof product.price === 'number' ? product.price : Number(product.price),
               image: product.image,
-              slug: product.slug   // Lägg till andra nödvändiga fält
+              slug: product.slug   
             };
             
             console.log("Lägger till i varukorgen:", cartItem);

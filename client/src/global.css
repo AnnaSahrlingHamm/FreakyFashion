@@ -68,7 +68,7 @@ h1, h2 {
 	font-family: 'WindSong';
 } 
 
-/* src/styles/fonts.css */
+
 @font-face {
     font-family: 'Babylonica';
     src: url('./fonts/Babylonica/Babylonica-Regular.ttf') format('truetype');
@@ -111,15 +111,15 @@ h1, h2 {
     font-style: normal;
   }
   
-  /* Wrapper för att centrera och styra sidbredd */
+
   .container {
 	width: 100%;
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 10px;
 	display: flex;
-	flex-direction: column; /* Staplar komponenterna vertikalt */
-	gap: 40px; /* Lägger till mellanrum mellan barn-element */
+	flex-direction: column; 
+	gap: 40px; 
   }
   
   

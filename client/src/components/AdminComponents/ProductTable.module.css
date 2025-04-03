@@ -1,52 +1,51 @@
-/* Stilar för hela tabellen */
+
 .admintable {
     width: 100%;
-    border-collapse: collapse; /* Tar bort mellanrum mellan celler */
+    border-collapse: collapse; 
     margin: 20px 0;
     font-family: Arial, sans-serif;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ger en fin skugga */
-    border-radius: 8px; /* Rundade hörn */
-    overflow: hidden; /* Säkerställer att rundade hörn syns */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+    overflow: hidden; 
   }
   
-  /* Stilar för tabellhuvudet */
   .admintable thead {
-    background-color: #007bff; /* Blå bakgrund för rubrikraden */
-    color: white; /* Vit text */
+    background-color: #007bff; 
+    color: white; 
   }
   
   .admintable th {
-    padding: 12px 15px; /* Utrymme runt texten */
-    text-align: left; /* Justera text till vänster */
+    padding: 12px 15px; 
+    text-align: left; 
     font-weight: bold;
   }
   
-  /* Stilar för tabellkroppen */
+ 
   .admintable tbody tr {
-    border-bottom: 1px solid #dddddd; /* Linje mellan rader */
+    border-bottom: 1px solid #dddddd; 
   }
   
   .admintable tbody tr:nth-of-type(even) {
-    background-color: #f9f9f9; /* Ljusgrå bakgrund för jämna rader */
+    background-color: #f9f9f9; 
   }
   
   .admintable tbody tr:last-of-type {
-    border-bottom: 2px solid #007bff; /* Tjock linje under sista raden */
+    border-bottom: 2px solid #007bff; 
   }
   
   .admintable tbody tr:hover {
-    background-color: #f1f1f1; /* Bakgrundsfärg vid hover */
+    background-color: #f1f1f1; 
   }
   
   .admintable td {
-    padding: 12px 15px; /* Utrymme runt texten */
+    padding: 12px 15px; 
   }
   
-  /* Stilar för meddelandet "Inga produkter tillgängliga" */
+  
   .admintable tbody tr td[colspan] {
-    text-align: center; /* Centrera texten */
-    font-style: italic; /* Kursiv text */
-    color: #888; /* Grå färg för texten */
+    text-align: center; 
+    font-style: italic; 
+    color: #888; 
   }
 
   .deleteButton {

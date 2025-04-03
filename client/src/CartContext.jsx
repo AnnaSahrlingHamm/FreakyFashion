@@ -8,7 +8,7 @@ export const CartProvider = ({ children }) => {
 
   console.log("cartItems initialt:", cartItems);
 
-  // Memoized funktioner
+  
   const addToCart = useCallback((product) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id);

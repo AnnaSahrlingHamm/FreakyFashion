@@ -5,7 +5,7 @@ import styles from './ProductCarousel.module.css';
 const ProductCarousel = ({ products = [] }) => {
   const carouselRef = useRef(null);
 
-  // Kontrollera att produkterna har unika bilder
+ 
   useEffect(() => {
     if (products.length > 0) {
       const uniqueImages = new Set(products.map(p => p.image));
@@ -23,7 +23,7 @@ const ProductCarousel = ({ products = [] }) => {
     }
   };
 
-  // Filtrera bort produkter utan bilder
+
   const validProducts = products.filter(product => 
     product && product.image && product.id
   );

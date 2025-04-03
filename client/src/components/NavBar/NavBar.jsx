@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./NavBar.module.css"; // Importera CSS-modulen
-
+import styles from "./NavBar.module.css"; 
 const NavBar = () => {
   return (
     <>
-      {/* Navbar för mobil */}
+    
       <nav className={styles.toppnav}>
         <ul>
           <li><Link className={styles.customLink} to="/admin-index"><h2>Nyheter</h2></Link></li>
@@ -15,7 +14,7 @@ const NavBar = () => {
         </ul>
       </nav>
 
-      {/* Navbar för större skärmar */}
+  
       <nav className={styles.toppnavLarge}>
         <ul>
         <li><Link className={styles.customLink} to="/admin-index"><h2>Nyheter</h2></Link></li>

@@ -22,7 +22,7 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Bilden */
+
 .productImage {
   width: 100%;
   height: auto;
@@ -35,7 +35,6 @@
   transform: scale(1.03);
 }
 
-/* Hjärtikon */
 .heartIcon {
   position: absolute;
   top: 10px;
@@ -56,7 +55,6 @@
   transform: scale(1.2);
 }
 
-/* Nyhet-badge */
 .badge {
   position: absolute;
   top: 10px;
@@ -69,7 +67,7 @@
   z-index: 2;
 }
 
-/* Texten */
+
 .productTitle {
   display: flex;
   flex-direction: column;

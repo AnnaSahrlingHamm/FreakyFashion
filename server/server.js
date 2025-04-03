@@ -15,7 +15,7 @@ app.use(cors({
 app.use(express.json());
 app.use(bodyParser.json());
 
-// Hjälpfunktion för att generera slug
+
 const generateSlug = (item) => {
   return item
     .toLowerCase()
@@ -23,7 +23,7 @@ const generateSlug = (item) => {
     .replace(/[^\w\-]+/g, '');
 };
 
-// Uppdatera sökendpointen i server.js
+
 app.get("/api/products", (req, res) => {
   const searchTerm = req.query.q?.trim() || "";
   
@@ -38,7 +38,7 @@ app.get("/api/products", (req, res) => {
       return res.json(products);
     }
     
-    // Om ingen sökterm - returnera alla produkter
+    
     const products = db.prepare("SELECT * FROM products").all();
     res.json(products);
     
@@ -57,18 +57,18 @@ app.get("/api/products/featured", (req, res) => {
   res.json(products);
 });
 
-// DELETE endpoint för att ta bort en produkt
+
 app.delete("/api/products/:id", (req, res) => {
   const { id } = req.params;
   
   try {
-    // Kontrollera om produkten finns
+    
     const product = db.prepare("SELECT * FROM products WHERE id = ?").get(id);
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
     }
 
-    // Ta bort produkten
+    
     const stmt = db.prepare("DELETE FROM products WHERE id = ?");
     const result = stmt.run(id);
     
@@ -83,7 +83,7 @@ app.delete("/api/products/:id", (req, res) => {
   }
 });
 
-// 2. Hämta en enskild produkt via slug
+
 app.get("/api/products/:slug", (req, res) => {
   const { slug } = req.params;
   console.log(`Fetching product with slug: ${slug}`);
@@ -101,7 +101,7 @@ app.get("/api/products/:slug", (req, res) => {
   res.json(product);
 });
 
-// 3. Hämta liknande produkter (endast en implementation)
+
 app.get("/api/products/:slug/similar", (req, res) => {
   const { slug } = req.params;
   
@@ -113,7 +113,7 @@ app.get("/api/products/:slug/similar", (req, res) => {
     return res.status(404).json({ error: "Main product not found" });
   }
 
-  // Hämta 5 slumpmässiga produkter (exkludera huvudprodukten)
+  
   const similarProducts = db.prepare(`
     SELECT * FROM products 
     WHERE id != ?
@@ -124,7 +124,7 @@ app.get("/api/products/:slug/similar", (req, res) => {
   res.json(similarProducts);
 });
 
-// Övriga routes (POST, PUT, DELETE)
+
 app.post("/api/products", async (req, res) => {
   const { image, item, brand, description, price, sku, published } = req.body;
   const slug = generateSlug(item);
@@ -144,7 +144,7 @@ app.post("/api/products", async (req, res) => {
 });
 
 
-// Starta servern
+
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

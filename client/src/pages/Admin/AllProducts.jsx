@@ -26,7 +26,7 @@ const AllProducts = () => {
         throw new Error(`HTTP-fel! Status: ${response.status}`);
       }
 
-      // Ta bort produkten från state om borttagningen lyckades
+     
       setProducts(prevProducts => prevProducts.filter(p => p.id !== productId));
     } catch (error) {
       console.error('Fel vid borttagning av produkt:', error);

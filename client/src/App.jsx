@@ -1,7 +1,7 @@
 import React from 'react';
 // import './App.css';
 import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { CartProvider, CartContext } from "./CartContext"; // Importera CartProvider
+import { CartProvider, CartContext } from "./CartContext"; 
 import Index from './pages/Index/Index';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import AddProduct from './pages/Admin/AddProduct';
@@ -29,13 +29,13 @@ function App() {
           
           <Route path="/products/:slug" element={<ProductDetails />} />
 
-          {/* Varukorg */}
+          
           <Route path="/basket" element={<Basket />} /> 
 
-          {/* Kassa */}
+          
           <Route path="/checkout" element={<Checkout />} />
 
-          {/* Fallback om ingen route matchar */}
+          
           <Route path="*" element={<h2>Sidan hittades inte</h2>} />
         </Routes>
       </CartProvider>

@@ -7,7 +7,7 @@ const ProductTable = ({ products, onDeleteProduct, isLoading }) => {
   const navigate = useNavigate();
 
   const handleRefresh = () => {
-    window.location.reload(); // eller anropa om-fetch-funktion om du har det
+    window.location.reload(); 
   };
 
   return (

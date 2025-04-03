@@ -6,18 +6,18 @@
   
   .adminContainer {
     display: flex;
-    flex-grow: 1;  /* Gör så att det tar upp all tillgänglig höjd */
+    flex-grow: 1;  
   }
   
   .adminLeftBar {
-    width: 200px; /* Håller sidomenyn i fast storlek */
+    width: 200px; 
     background-color: #e0e0e0;
     padding: 20px;
   }
   
   .adminContent {
-    flex-grow: 1; /* Gör så att innehållet tar upp all tillgänglig bredd */
+    flex-grow: 1; 
     padding: 20px;
-    overflow: auto; /* Förhindrar att det blir klippt om innehållet är större */
+    overflow: auto; 
   }
   

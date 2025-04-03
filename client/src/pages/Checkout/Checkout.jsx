@@ -6,7 +6,7 @@ import CustomerForm from "../../components/CheckoutComponents/CustomerForm";
 import IconLinks from "../../components/IconLinks/IconLinks";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
-import styles from "../Basket/Basket.module.css";
+
 
 const Checkout = () => {
   return (
@@ -17,9 +17,6 @@ const Checkout = () => {
           <h1>Checkout</h1>
           <div className="checkout-content">
             <CheckoutTableWrapper showCheckoutButton={true} />
-            <Link to="/checkout" className={styles.checkoutBtn}>
-              Till kassan!
-            </Link>
             <CustomerForm />
           </div>
         </div>
